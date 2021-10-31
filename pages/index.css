@@ -1,0 +1,8 @@
+/* сбрасываем стандартные стили */
+@import url(../vendor/normalize.css);
+/* подключаем шрифты */
+@import url(../fonts/fonts.css);
+/* устанавливаем фон странице */
+@import url(../blocks/body/body.css);
+/* центрируем контентную зону */
+@import url(../blocks/page/page.css);
