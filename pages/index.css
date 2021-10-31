@@ -11,4 +11,10 @@
 
 /* шапка */
 @import url(../blocks/header/header.css);
+/* логотип */
+@import url(../blocks/header/__logo/header__logo.css);
+/* ссылка на логотипе, с заделом на будущее */
+@import url(../blocks/header/__logo-link/header__logo-link.css);
+
+
 
