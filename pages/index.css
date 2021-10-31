@@ -6,3 +6,9 @@
 @import url(../blocks/body/body.css);
 /* центрируем контентную зону */
 @import url(../blocks/page/page.css);
+/* положение header */
+@import url(../blocks/page/__header/page__header.css);
+
+/* шапка */
+@import url(../blocks/header/header.css);
+
