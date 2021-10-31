@@ -1,0 +1,23 @@
+.header {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: white;
+  border-bottom: 1px solid #545454;
+  display: flex;
+  max-width: 880px;
+  padding-bottom: 40px;
+
+}
+
+@media screen and (max-width: 960px) {
+  .header {
+    padding-left: 33px;
+    padding-bottom: 36px;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .header {
+    padding-left: 27px;
+    padding-bottom: 32px;
+  }
+}
