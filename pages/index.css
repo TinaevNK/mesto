@@ -8,6 +8,8 @@
 @import url(../blocks/page/page.css);
 /* положение header */
 @import url(../blocks/page/__header/page__header.css);
+/* положение main */
+@import url(../blocks/page/__main/page__main.css);
 
 /* шапка */
 @import url(../blocks/header/header.css);
@@ -16,5 +18,20 @@
 /* ссылка на логотипе, с заделом на будущее */
 @import url(../blocks/header/__logo-link/header__logo-link.css);
 
+/* контентная часть сайта */
+@import url(../blocks/main/main.css);
 
-
+/* секция с профилем */
+@import url(../blocks/profile/profile.css);
+/* аватар */
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+/* информация о пользователе, контейнер */
+@import url(../blocks/profile/__info/profile__info.css);
+/* имя пользователя */
+@import url(../blocks/profile/__name/profile__name.css);
+/* его описание */
+@import url(../blocks/profile/__description/profile__description.css);
+/* кнопка редактирования */
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+/* кнопка добавить */
+@import url(../blocks/profile/__add-button/profile__add-button.css);
