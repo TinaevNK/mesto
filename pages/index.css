@@ -20,6 +20,8 @@
 
 /* контентная часть сайта */
 @import url(../blocks/main/main.css);
+/* контейнер профиля */
+@import url(../blocks/main/__profile/main__profile.css);
 
 /* секция с профилем */
 @import url(../blocks/profile/profile.css);

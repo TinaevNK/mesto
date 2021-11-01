@@ -3,20 +3,10 @@
   color: white;
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
-}
-
-@media screen and (max-width: 960px) {
-  .profile {
-    padding-left: 33px;
-    padding-right: 33px;
-  }
 }
 
 @media screen and (max-width:500px) {
   .profile {
     flex-direction: column;
-    padding-left: 19px;
-    padding-right: 19px;
   }
 }
