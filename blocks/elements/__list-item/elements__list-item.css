@@ -1,0 +1,6 @@
+.elements__list-item {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
