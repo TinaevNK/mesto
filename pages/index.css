@@ -60,3 +60,20 @@
 @import url(../blocks/footer/footer.css);
 /* текст с авторством */
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+/* добавляем popup */
+@import url(../blocks/popup/popup.css);
+/* форма внутри поп-ап,а */
+@import url(../blocks/popup/__form/popup__form.css);
+/* контент внутри формы */
+@import url(../blocks/popup/__info/popup__info.css);
+/* заголовок формы */
+@import url(../blocks/popup/__title/popup__title.css);
+/* поле формы */
+@import url(../blocks/popup/__label/popup__label.css);
+/* окно ввода */
+@import url(../blocks/popup/__input/popup__input.css);
+/* кнопка сохранения */
+@import url(../blocks/popup/__button/popup__button.css);
+/* копка закрытия поп-ап,а */
+@import url(../blocks/popup/__close-button/popup__close-button.css);

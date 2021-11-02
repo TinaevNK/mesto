@@ -1,0 +1,9 @@
+.popup__label {
+  display: flex;
+  margin-bottom: 17px;
+
+}
+
+.popup__label:last-of-type {
+  margin-bottom: 44px;
+}

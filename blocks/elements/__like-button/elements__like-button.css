@@ -7,4 +7,11 @@
   height: 19px;
   padding: 0;
   border: none;
+  transition: opacity .3s ease;
+  opacity: 1;
+}
+
+.elements__like-button:hover {
+  opacity: .6;
+  cursor: pointer;
 }
