@@ -8,6 +8,12 @@
   height: 50px;
   margin-left: auto;
   padding: 0;
+  transition: opacity .3s ease;
+  opacity: 1;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width:500px) {
