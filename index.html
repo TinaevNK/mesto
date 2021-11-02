@@ -104,6 +104,33 @@
       <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
+      <div class="popup">
+        <form class="popup__form">
+          <fieldset class="popup__info">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <label class="popup__label">
+              <input
+                type="text"
+                placeholder="Имя"
+                name="name"
+                value="Жак-Ив Кусто"
+                class="popup__input"
+              />
+            </label>
+            <label class="popup__label">
+              <input
+                type="text"
+                placeholder="О себе"
+                name="info"
+                value="Исследователь океана"
+                class="popup__input"
+              />
+            </label>
+            <button type="submit" class="popup__button">Сохранить</button>
+          </fieldset>
+          <button type="button" class="popup__close-button"></button>
+        </form>
+      </div>
     </div>
     <script src="./scripts/script.js"></script>
   </body>
