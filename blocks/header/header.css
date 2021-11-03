@@ -1,0 +1,6 @@
+.header {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: white;
+  border-bottom: 1px solid #545454;
+  display: flex;
+}
