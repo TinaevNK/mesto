@@ -8,11 +8,11 @@ const formElement = document.querySelector('.popup__form');
 
 const nameInput = formElement.querySelector("input[name='name']");
 
-const infoInput = formElement.querySelector("input[name='info']");
+const jobInput = formElement.querySelector("input[name='job']");
 
 const nameProfile = document.querySelector('.profile__name');
 
-const descriptionProfile = document.querySelector('.profile__description');
+const jobProfile = document.querySelector('.profile__job');
 
 function openPopup() {
 
@@ -26,7 +26,7 @@ function closePopup() {
 
   nameInput.value = nameProfile.textContent;
 
-  infoInput.value = descriptionProfile.textContent;
+  jobInput.value = jobProfile.textContent;
 
 }
 
@@ -36,7 +36,7 @@ function formSubmitHandler (evt) {
 
   nameProfile.textContent = nameInput.value;
 
-  descriptionProfile.textContent = infoInput.value;
+  jobProfile.textContent = jobInput.value;
 
   closePopup();
 

@@ -35,7 +35,7 @@
 /* имя пользователя */
 @import url(../blocks/profile/__name/profile__name.css);
 /* его описание */
-@import url(../blocks/profile/__description/profile__description.css);
+@import url(../blocks/profile/__job/profile__job.css);
 /* кнопка редактирования */
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 /* кнопка добавить */
@@ -55,6 +55,8 @@
 @import url(../blocks/elements/__title/elements__title.css);
 /* кнопка лайка */
 @import url(../blocks/elements/__like-button/elements__like-button.css);
+/* модификатор для закрашивания лайка */
+@import url(../blocks/elements/__like-button/_active/elements__like-button_active.css);
 
 /* блок footer, подвал */
 @import url(../blocks/footer/footer.css);
@@ -76,6 +78,6 @@
 /* окно ввода */
 @import url(../blocks/popup/__input/popup__input.css);
 /* кнопка сохранения */
-@import url(../blocks/popup/__button/popup__button.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
 /* копка закрытия поп-ап,а */
 @import url(../blocks/popup/__close-button/popup__close-button.css);
