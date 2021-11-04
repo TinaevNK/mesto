@@ -26,76 +26,76 @@
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
-            <button class="profile__edit-button"></button>
+            <button type="button" class="profile__edit-button"></button>
           </div>
-          <button class="profile__add-button"></button>
+          <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
           <ul class="elements__list">
-            <li class="elements__list-item">
+            <li class="element">
               <img
                 src="./images/machu-piсchu.jpg"
                 alt="Мачу-Пикчу"
-                class="elements__photo"
+                class="element__photo"
               />
-              <div class="elements__container">
-                <h2 class="elements__title">Мачу-Пикчу</h2>
-                <button class="elements__like-button"></button>
+              <div class="element__container">
+                <h2 class="element__title">Мачу-Пикчу</h2>
+                <button type="button" class="element__like-button"></button>
               </div>
             </li>
-            <li class="elements__list-item">
+            <li class="element">
               <img
                 src="./images/moraine-lake.jpg"
                 alt="Озеро Морейн"
-                class="elements__photo"
+                class="element__photo"
               />
-              <div class="elements__container">
-                <h2 class="elements__title">Озеро Морейн</h2>
-                <button class="elements__like-button"></button>
+              <div class="element__container">
+                <h2 class="element__title">Озеро Морейн</h2>
+                <button type="button" class="element__like-button"></button>
               </div>
             </li>
-            <li class="elements__list-item">
+            <li class="element">
               <img
                 src="./images/pamukkale.jpg"
                 alt="Памуккале"
-                class="elements__photo"
+                class="element__photo"
               />
-              <div class="elements__container">
-                <h2 class="elements__title">Памуккале</h2>
-                <button class="elements__like-button"></button>
+              <div class="element__container">
+                <h2 class="element__title">Памуккале</h2>
+                <button type="button" class="element__like-button"></button>
               </div>
             </li>
-            <li class="elements__list-item">
+            <li class="element">
               <img
                 src="./images/skaftafell.jpg"
                 alt="Скафтафетль"
-                class="elements__photo"
+                class="element__photo"
               />
-              <div class="elements__container">
-                <h2 class="elements__title">Скафтафетль</h2>
-                <button class="elements__like-button"></button>
+              <div class="element__container">
+                <h2 class="element__title">Скафтафетль</h2>
+                <button type="button" class="element__like-button"></button>
               </div>
             </li>
-            <li class="elements__list-item">
+            <li class="element">
               <img
                 src="./images/svínafellsjökull.jpg"
                 alt="Снайфедльсйёкюдль"
-                class="elements__photo"
+                class="element__photo"
               />
-              <div class="elements__container">
-                <h2 class="elements__title">Снайфедльсйёкюдль</h2>
-                <button class="elements__like-button"></button>
+              <div class="element__container">
+                <h2 class="element__title">Снайфедльсйёкюдль</h2>
+                <button type="button" class="element__like-button"></button>
               </div>
             </li>
-            <li class="elements__list-item">
+            <li class="element">
               <img
                 src="./images/teriberka.jpg"
                 alt="Териберка"
-                class="elements__photo"
+                class="element__photo"
               />
-              <div class="elements__container">
-                <h2 class="elements__title">Териберка</h2>
-                <button class="elements__like-button"></button>
+              <div class="element__container">
+                <h2 class="element__title">Териберка</h2>
+                <button type="button" class="element__like-button"></button>
               </div>
             </li>
           </ul>
@@ -105,33 +105,44 @@
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
       <div class="popup">
-        <form class="popup__form">
-          <fieldset class="popup__info">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <label class="popup__label">
-              <input
-                type="text"
-                placeholder="Имя"
-                name="name"
-                value="Жак-Ив Кусто"
-                class="popup__input"
-              />
-            </label>
-            <label class="popup__label">
-              <input
-                type="text"
-                placeholder="О себе"
-                name="job"
-                value="Исследователь океана"
-                class="popup__input"
-              />
-            </label>
-            <button type="submit" class="popup__save-button">Сохранить</button>
-          </fieldset>
-          <button type="button" class="popup__close-button"></button>
-        </form>
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form name="edit-profile" class="popup__form">
+            <fieldset class="popup__info">
+              <label class="popup__label">
+                <input
+                  type="text"
+                  placeholder="Имя"
+                  name="name"
+                  value=""
+                  id="name"
+                  class="popup__input"
+                />
+              </label>
+              <label class="popup__label">
+                <input
+                  type="text"
+                  placeholder="О себе"
+                  name="job"
+                  value=""
+                  id="job"
+                  class="popup__input"
+                />
+              </label>
+              <button type="submit" class="popup__save-button">
+                Сохранить
+              </button>
+            </fieldset>
+            <button type="button" class="popup__close-button"></button>
+          </form>
+        </div>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
+
+
+<!-- Ольга, спасибо за такие качественные ревью, мои любимые, захотелось сказать это "лично"
+Надеюсь правильно понимаю все замечания.
+Если что-то не так(даже "можно лучше") - готов исправить их-->

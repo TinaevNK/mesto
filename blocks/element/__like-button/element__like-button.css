@@ -1,4 +1,4 @@
-.elements__like-button {
+.element__like-button {
   background-image: url(../../../images/like-inactive.svg);
   background-color: transparent;
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
   opacity: 1;
 }
 
-.elements__like-button:hover {
-  opacity: .6;
+.element__like-button:hover {
+  opacity: .5;
   cursor: pointer;
 }
