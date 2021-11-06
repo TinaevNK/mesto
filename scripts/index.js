@@ -23,18 +23,18 @@ function openPopup() {
 
   popupElement.classList.add('popup_opened');
 
+  // значение полей при открытии поп-па,а
+  // запишет в поле то значение, которое было сохранено в HTML
+  nameInput.value = nameProfile.textContent;
+
+  jobInput.value = jobProfile.textContent;
+
 }
 
 // объявляем функцию закрытия поп-ап,а
 function closePopup() {
 
   popupElement.classList.remove('popup_opened');
-
-  // значение полей при закрытии попапа по кнопке X запишет
-  // в поле то значение, которое было сохранено в HTML
-  nameInput.value = nameProfile.textContent;
-
-  jobInput.value = jobProfile.textContent;
 
 }
 
