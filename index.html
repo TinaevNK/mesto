@@ -30,7 +30,7 @@
         </section>
         <section class="elements">
           <ul class="elements__list">
-            <li class="element">
+            <!-- <li class="element">
               <img src="./images/machu-piсchu.jpg" alt="Мачу-Пикчу" class="element__photo" />
               <div class="element__container">
                 <h2 class="element__title">Мачу-Пикчу</h2>
@@ -71,13 +71,16 @@
                 <h2 class="element__title">Териберка</h2>
                 <button type="button" class="element__like-button"></button>
               </div>
-            </li>
+            </li> -->
           </ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
+
+      <!-- попап редактирования профиля -->
+
       <div class="popup">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -97,6 +100,19 @@
           </form>
         </div>
       </div>
+
+      <!-- шаблон для карточек -->
+
+      <template id="cardTemplate">
+        <li class="element">
+          <img src="#" alt="шаблон фото-карточки" class="element__photo" />
+          <div class="element__container">
+            <h2 class="element__title">Test</h2>
+            <button type="button" class="element__like-button"></button>
+          </div>
+        </li>
+      </template>
+
     </div>
     <script src="./scripts/index.js"></script>
   </body>
