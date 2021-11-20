@@ -26,7 +26,7 @@
             <p class="profile__job">Исследователь океана</p>
             <button id='profile__edit-button' type="button" class="profile__edit-button"></button>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button id='profile__add-button' type="button" class="profile__add-button"></button>
         </section>
         <section aria-label="блок с фото-карточками" class="elements">
           <ul class="elements__list">
@@ -97,6 +97,28 @@
               </button>
             </fieldset>
             <button id='popup-edit__close-button' type="button" class="popup__close-button"></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- попап добавления карточки -->
+
+      <div id='popup-create-card' class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+          <form id='popup-create-card__form' name="create-card" class="popup__form">
+            <fieldset class="popup__info">
+              <label class="popup__label">
+                <input type="text" placeholder="Название" name="title" value="" id="create-card__title" class="popup__input" />
+              </label>
+              <label class="popup__label">
+                <input type="text" placeholder="Ссылка на картинку" name="link" value="" id="create-card__link" class="popup__input" />
+              </label>
+              <button id='popup-create-card__save-button' type="submit" class="popup__save-button">
+                Создать
+              </button>
+            </fieldset>
+            <button id='popup-create-card__close-button' type="button" class="popup__close-button"></button>
           </form>
         </div>
       </div>
