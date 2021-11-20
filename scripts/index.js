@@ -116,3 +116,38 @@ const addCard = initialCards.map((card) => { // перебираем масси�
 
 // добавление в разметку карточек
 cardContainer.append(...addCard);
+
+
+// попап добавления новых карточек
+
+// ищем в документе наш попап
+const popupElementCreateCards = document.querySelector('#popup-create-card');
+
+// кнопка закрытия попапа
+const closeButtonFormCards = popupElementCreateCards.querySelector('#popup-create-card__close-button');
+// кнопка добавления карточки (+)
+const addButton = document.querySelector('.profile__add-button');
+
+// ищем форму добавления карточек
+const formElementCreateCards = popupElementCreateCards.querySelector('#popup-create-card__form');
+// её <input> c названием карточки
+const titleInput = formElementCreateCards.querySelector('#create-card__title');
+// её <input> с ссылкой на карточку
+const linkInput = formElementCreateCards.querySelector('#create-card__link');
+
+// ищем в шаблоне поле с названием карточки
+const titleCard = cardTemplate.content.querySelector('.element__title');
+// ищем в шаблоне поле с ссылкой на картинку
+const linlCard = cardTemplate.content.querySelector('.element__photo')
+
+// объявляем функцию открытия попапа с добавлением карточки
+const openPopupCreateCard = () => { popupElementCreateCards.classList.add('popup_opened'); }
+
+// объявляем функцию закрытия поп-ап,а
+const closePopupCreateCard = () => { popupElementCreateCards.classList.remove('popup_opened'); }
+
+
+// обработчик клика по кнопке (+)
+addButton.addEventListener('click', openPopupCreateCard);
+// обработчик клика по кнопке X
+closeButtonFormCards.addEventListener('click', closePopupCreateCard);
