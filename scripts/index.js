@@ -1,23 +1,23 @@
 // объявляем переменные и константы
 
 // ищем в документе наш попап
-const popupElement = document.querySelector('.popup');
+const popupElement = document.querySelector('#popup-edit');
 
 // кнопка закрытия попапа
-const closeButton = document.querySelector('.popup__close-button');
+const closeButton = document.querySelector('#popup-edit__close-button');
 // кнопка "редактировать профиль"
-const editButton = document.querySelector('.profile__edit-button');
+const editButton = document.querySelector('#profile__edit-button');
 
 // ищем нашу форму
-const formElement = document.querySelector('.popup__form');
-// её поле c именем
+const formElement = document.querySelector('#popup-edit__form');
+// её <input> с именем
 const nameInput = formElement.querySelector('#name');
-// её полен с работой
+// её <input> с работой
 const jobInput = formElement.querySelector('#job');
 
-// ищем в документе <input> с именем
+// ищем в документе поле с именем
 const nameProfile = document.querySelector('.profile__name');
-// ищем в документе <input> с работой
+// ищем в документе поле с работой
 const jobProfile = document.querySelector('.profile__job');
 
 // объявляем функцию открытия поп-ап,а и добавляем модификатор
