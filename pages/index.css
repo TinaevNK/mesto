@@ -48,6 +48,8 @@
 
 /* блок фото-карточки */
 @import url(../blocks/element/element.css);
+/* кнопка удаления */
+@import url(../blocks/element/__delete-button/element__delete-button.css);
 /* фото на карточках */
 @import url(../blocks/element/__photo/element__photo.css);
 /* контейнер для заголовка и кнопки */
