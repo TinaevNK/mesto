@@ -94,13 +94,12 @@ const initialCards = [
   }
 ];
 
-// находим шаблон
-const cardTemplate = document.querySelector('#cardTemplate');
 // находим контейнер, куда будем вставлять клоны шаблона
 const cardContainer = document.querySelector('.elements__list');
 
 // функция рендеринга карточек
 const createCardDomNode = (card) => {
+  const cardTemplate = document.querySelector('#cardTemplate'); //находим наш шаблон
   const cardTemplateElement = cardTemplate.content.querySelector('.element').cloneNode(true); //клонируем
   cardTemplateElement.querySelector('.element__title').textContent = card.name; // заполняем контентом
   cardTemplateElement.querySelector('.element__photo').src = card.link;
@@ -120,6 +119,7 @@ cardContainer.append(...addCard);
 
 // попап добавления новых карточек
 
+
 // ищем в документе наш попап
 const popupElementCreateCards = document.querySelector('#popup-create-card');
 
@@ -135,19 +135,38 @@ const titleInput = formElementCreateCards.querySelector('#create-card__title');
 // её <input> с ссылкой на карточку
 const linkInput = formElementCreateCards.querySelector('#create-card__link');
 
-// ищем в шаблоне поле с названием карточки
-const titleCard = cardTemplate.content.querySelector('.element__title');
-// ищем в шаблоне поле с ссылкой на картинку
-const linlCard = cardTemplate.content.querySelector('.element__photo')
-
 // объявляем функцию открытия попапа с добавлением карточки
 const openPopupCreateCard = () => { popupElementCreateCards.classList.add('popup_opened'); }
 
 // объявляем функцию закрытия поп-ап,а
 const closePopupCreateCard = () => { popupElementCreateCards.classList.remove('popup_opened'); }
 
-
 // обработчик клика по кнопке (+)
 addButton.addEventListener('click', openPopupCreateCard);
 // обработчик клика по кнопке X
 closeButtonFormCards.addEventListener('click', closePopupCreateCard);
+
+
+// добавление новых карточек
+
+
+// объявляем функцию сохраниния наших данных по кнопке "сохранить"
+function formSubmitHandlerAddCard (evt) {
+
+  evt.preventDefault();
+
+  const inputNameValue = titleInput.value
+  const inputLinkValue = linkInput.value
+  const newCardName = createCardDomNode( {name: inputNameValue, link: inputLinkValue} );
+
+  cardContainer.prepend(newCardName); //добавляем в начало массива новую карточку
+
+  titleInput.value = ''; //делаем поля пустыми по завершению добавления карточки
+  linkInput.value = '';
+
+  closePopupCreateCard()
+
+}
+
+// обработчик клике по факту отправки формы
+formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard);
