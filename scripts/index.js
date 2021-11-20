@@ -105,6 +105,8 @@ const createCardDomNode = (card) => {
   cardTemplateElement.querySelector('.element__photo').src = card.link;
   cardTemplateElement.querySelector('.element__photo').alt = card.name;
 
+  likeCard(cardTemplateElement);
+
   return cardTemplateElement;
 }
 
@@ -136,10 +138,14 @@ const titleInput = formElementCreateCards.querySelector('#create-card__title');
 const linkInput = formElementCreateCards.querySelector('#create-card__link');
 
 // объявляем функцию открытия попапа с добавлением карточки
-const openPopupCreateCard = () => { popupElementCreateCards.classList.add('popup_opened'); }
+const openPopupCreateCard = () =>  popupElementCreateCards.classList.add('popup_opened');
 
 // объявляем функцию закрытия поп-ап,а
-const closePopupCreateCard = () => { popupElementCreateCards.classList.remove('popup_opened'); }
+const closePopupCreateCard = () => {
+  popupElementCreateCards.classList.remove('popup_opened');
+  titleInput.value = ''; //делаем поля пустыми по закрытию попапа
+  linkInput.value = '';
+}
 
 // обработчик клика по кнопке (+)
 addButton.addEventListener('click', openPopupCreateCard);
@@ -161,12 +167,18 @@ function formSubmitHandlerAddCard (evt) {
 
   cardContainer.prepend(newCardName); //добавляем в начало массива новую карточку
 
-  titleInput.value = ''; //делаем поля пустыми по завершению добавления карточки
-  linkInput.value = '';
-
   closePopupCreateCard()
 
 }
 
 // обработчик клике по факту отправки формы
 formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard);
+
+
+// реализация лайка
+
+function likeCard (cardTemplateElement) {
+  cardTemplateElement.querySelector('.element__like-button').addEventListener('click', evt => {
+    evt.target.classList.toggle('element__like-button_active');
+  });
+};
