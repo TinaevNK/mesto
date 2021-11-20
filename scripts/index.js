@@ -106,6 +106,7 @@ const createCardDomNode = (card) => {
   cardTemplateElement.querySelector('.element__photo').alt = card.name;
 
   likeCard(cardTemplateElement);
+  deleteCard(cardTemplateElement);
 
   return cardTemplateElement;
 }
@@ -176,9 +177,11 @@ formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard);
 
 
 // реализация лайка
-
 function likeCard (cardTemplateElement) {
-  cardTemplateElement.querySelector('.element__like-button').addEventListener('click', evt => {
-    evt.target.classList.toggle('element__like-button_active');
-  });
+  cardTemplateElement.querySelector('.element__like-button').addEventListener('click', evt => evt.target.classList.toggle('element__like-button_active'))
+};
+
+// реализация удаления карточки
+function deleteCard (cardTemplateElement) {
+  cardTemplateElement.querySelector('.element__delete-button').addEventListener('click', () => cardTemplateElement.remove())
 };
