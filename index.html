@@ -19,69 +19,31 @@
         </a>
       </header>
       <main class="main page__main">
-        <section class="profile main__profile">
+        <section aria-label="блок с профилем пользователя" class="profile main__profile">
           <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar" />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
-            <button type="button" class="profile__edit-button"></button>
+            <button id='profile__edit-button' type="button" class="profile__edit-button"></button>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button id='profile__add-button' type="button" class="profile__add-button"></button>
         </section>
-        <section class="elements">
+        <section aria-label="блок с фото-карточками" class="elements">
           <ul class="elements__list">
-            <li class="element">
-              <img src="./images/machu-piсchu.jpg" alt="Мачу-Пикчу" class="element__photo" />
-              <div class="element__container">
-                <h2 class="element__title">Мачу-Пикчу</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./images/moraine-lake.jpg" alt="Озеро Морейн" class="element__photo" />
-              <div class="element__container">
-                <h2 class="element__title">Озеро Морейн</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./images/pamukkale.jpg" alt="Памуккале" class="element__photo" />
-              <div class="element__container">
-                <h2 class="element__title">Памуккале</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./images/skaftafell.jpg" alt="Скафтафетль" class="element__photo" />
-              <div class="element__container">
-                <h2 class="element__title">Скафтафетль</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./images/svínafellsjökull.jpg" alt="Снайфедльсйёкюдль" class="element__photo" />
-              <div class="element__container">
-                <h2 class="element__title">Снайфедльсйёкюдль</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./images/teriberka.jpg" alt="Териберка" class="element__photo" />
-              <div class="element__container">
-                <h2 class="element__title">Териберка</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
+            <!-- место для template -->
           </ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
-      <div class="popup">
+
+      <!-- попап редактирования профиля -->
+
+      <div id='popup-edit' class="popup">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="edit-profile" class="popup__form">
+          <form id='popup-edit__form' name="edit-profile" class="popup__form">
             <fieldset class="popup__info">
               <label class="popup__label">
                 <input type="text" placeholder="Имя" name="name" value="" id="name" class="popup__input" />
@@ -89,19 +51,61 @@
               <label class="popup__label">
                 <input type="text" placeholder="О себе" name="job" value="" id="job" class="popup__input" />
               </label>
-              <button type="submit" class="popup__save-button">
+              <button id='popup-edit__save-button' type="submit" class="popup__save-button">
                 Сохранить
               </button>
             </fieldset>
-            <button type="button" class="popup__close-button"></button>
+            <button id='popup-edit__close-button' type="button" class="popup__close-button"></button>
           </form>
         </div>
       </div>
+
+      <!-- попап добавления карточки -->
+
+      <div id='popup-create-card' class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+          <form id='popup-create-card__form' name="create-card" class="popup__form">
+            <fieldset class="popup__info">
+              <label class="popup__label">
+                <input type="text" placeholder="Название" name="title" value="" id="create-card__title" class="popup__input" />
+              </label>
+              <label class="popup__label">
+                <input type="text" placeholder="Ссылка на картинку" name="link" value="" id="create-card__link" class="popup__input" />
+              </label>
+              <button id='popup-create-card__save-button' type="submit" class="popup__save-button">
+                Создать
+              </button>
+            </fieldset>
+            <button id='popup-create-card__close-button' type="button" class="popup__close-button"></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- попап просмотра карточки -->
+
+      <div id="popup-picture" class="popup popup_opasity-high">
+        <figure class="popup__picture-container">
+          <img class="popup__photo" alt="описание картинки" src="#">
+          <button id='popup-photo__close-button' type="button" class="popup__close-button"></button>
+          <figcaption class="popup__photo-name">Подпись</figcaption>
+        </figure>
+      </div>
+
+      <!-- шаблон для карточек -->
+
+      <template id="cardTemplate">
+        <li class="element">
+          <button type="button" class="element__delete-button"></button>
+          <img src="#" alt="шаблон фото-карточки" class="element__photo" />
+          <div class="element__container">
+            <h2 class="element__title">Test</h2>
+            <button type="button" class="element__like-button"></button>
+          </div>
+        </li>
+      </template>
+
     </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
-
-<!-- Ольга, спасибо за такие качественные ревью, мои любимые, захотелось сказать это "лично"
-Надеюсь правильно понимаю все замечания.
-Если что-то не так(даже "можно лучше") - готов исправить их-->
