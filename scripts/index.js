@@ -107,6 +107,7 @@ const createCardDomNode = (card) => {
 
   likeCard(cardTemplateElement);
   deleteCard(cardTemplateElement);
+  openPopupPicture(cardTemplateElement);
 
   return cardTemplateElement;
 }
@@ -185,3 +186,30 @@ function likeCard (cardTemplateElement) {
 function deleteCard (cardTemplateElement) {
   cardTemplateElement.querySelector('.element__delete-button').addEventListener('click', () => cardTemplateElement.remove())
 };
+
+
+// добавление просмотра картинки на весь экран
+
+
+const popupPicture = document.querySelector('#popup-picture'); // ищем наш попап
+const closeButtonPicture = popupPicture.querySelector('#popup-photo__close-button'); //его кнопка закрытия
+const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото в попапе
+const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
+
+// функция открытия попапа
+function openPopupPicture(element) {
+  const picture = element.querySelector(".element__photo");
+  const text = element.querySelector(".element__title");
+  picture.addEventListener("click", () => {
+    popupPhotoLink.src = picture.src;
+    popupPhotoLink.alt = text.textContent;
+    popupPhotoName.textContent = text.textContent;
+    popupPicture.classList.add('popup_opened');
+  })
+}
+
+// объявляем функцию закрытия поп-ап,а
+const closePopupPicture = () => popupPicture.classList.remove('popup_opened');
+
+// обработчик клика по кнопке X
+closeButtonPicture.addEventListener('click', closePopupPicture);
