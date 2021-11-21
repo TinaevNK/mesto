@@ -1,0 +1,8 @@
+.popup__picture-container {
+  max-width: 75vw;
+  max-height: 75vh;
+  position: relative;
+  color: white;
+  display: grid;
+  gap: 10px;
+}

@@ -70,8 +70,16 @@
 @import url(../blocks/popup/popup.css);
 /* открывающий модификатор */
 @import url(../blocks/popup/_opened/popup_opened.css);
+/* модификатор более сильного затемнения */
+@import url(../blocks/popup/_opasity-high/popup_opasity-high.css);
 /* контейнер поп-апа */
 @import url(../blocks/popup/__container/popup__container.css);
+/* контейнер попапа для фото на весь экран */
+@import url(../blocks/popup/__picture-container/popup__picture-container.css);
+/* фото внутри попапа */
+@import url(../blocks/popup/__photo/popup__photo.css);
+/* подпись для фото на весь экран */
+@import url(../blocks/popup/__photo-name/popup__photo-name.css);
 /* форма внутри поп-ап,а */
 @import url(../blocks/popup/__form/popup__form.css);
 /* контент внутри формы */
