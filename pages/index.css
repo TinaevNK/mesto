@@ -70,8 +70,6 @@
 @import url(../blocks/popup/popup.css);
 /* открывающий модификатор */
 @import url(../blocks/popup/_opened/popup_opened.css);
-/* закрывающий модификатор */
-@import url(../blocks/popup/_close/popup_close.css);
 /* модификатор более сильного затемнения */
 @import url(../blocks/popup/_opasity-high/popup_opasity-high.css);
 /* контейнер поп-апа */
@@ -94,5 +92,7 @@
 @import url(../blocks/popup/__input/popup__input.css);
 /* кнопка сохранения */
 @import url(../blocks/popup/__save-button/popup__save-button.css);
-/* копка закрытия поп-ап,а */
+/* кнопка закрытия поп-ап,а */
 @import url(../blocks/popup/__close-button/popup__close-button.css);
+/* общий модификатор для всех Х */
+@import url(../blocks/popup/__close-button/_general/popup__close-button_general.css);

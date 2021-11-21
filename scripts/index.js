@@ -1,7 +1,7 @@
 // попап редактирования профиля
 
 const popupEditProfile = document.querySelector('#popup-edit'); // попап ред-ия профиля
-const closeButtonEditProfile = popupEditProfile.querySelector('.popup_close'); // кнопка закрытия попапа ред-ия профиля
+const closeButtonEditProfile = popupEditProfile.querySelector('.popup__close-button_general'); // кнопка закрытия попапа ред-ия профиля
 const editButton = document.querySelector('#profile__edit-button'); // кнопка "ред-ть профиль"
 const formElement = document.querySelector('#popup-edit__form'); // форма попапа ред-ия профиля
 const nameInput = formElement.querySelector('#name'); // её <input> с именем;
@@ -40,7 +40,7 @@ const cardContainer = document.querySelector('.elements__list'); // находи
 
 // попап добавления карточек
 const popupElementCreateCards = document.querySelector('#popup-create-card'); // находим попап с добавлением карточек
-const closeButtonFormCards = popupElementCreateCards.querySelector('.popup_close'); // кнопка закрытия этого попапа
+const closeButtonFormCards = popupElementCreateCards.querySelector('.popup__close-button_general'); // кнопка закрытия этого попапа
 const addButton = document.querySelector('.profile__add-button'); // кнопка добавления карточки (+)
 const formElementCreateCards = popupElementCreateCards.querySelector('#popup-create-card__form'); // ищем форму добавления карточек
 const titleInput = formElementCreateCards.querySelector('#create-card__title'); // её <input> c названием карточки
@@ -48,7 +48,7 @@ const linkInput = formElementCreateCards.querySelector('#create-card__link'); //
 
 // добавление просмотра картинки на весь экран
 const popupPicture = document.querySelector('#popup-picture'); // ищем наш попап
-const closeButtonPicture = popupPicture.querySelector('.popup_close'); //его кнопка закрытия
+const closeButtonPicture = popupPicture.querySelector('.popup__close-button_general'); //его кнопка закрытия
 const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото в попапе
 const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
 
