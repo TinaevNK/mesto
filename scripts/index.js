@@ -1,4 +1,4 @@
-// объявляем переменные и константы
+// работа редактирования профиля
 
 // ищем в документе наш попап
 const popupElement = document.querySelector('#popup-edit');
@@ -65,6 +65,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 // рендеринг карточек
+
 
 // первоначальный массив карточек для template
 const initialCards = [
@@ -213,3 +214,8 @@ const closePopupPicture = () => popupPicture.classList.remove('popup_opened');
 
 // обработчик клика по кнопке X
 closeButtonPicture.addEventListener('click', closePopupPicture);
+
+
+// разместил функционал по блокам, разделил комментариями
+// обсуловлено тем, чтобы куча переменных/функций не были в одном месте разом
+// не знаю, правильно это или нет, но решил сделать так:)
