@@ -59,12 +59,12 @@ const openPopup = popupWindow => popupWindow.classList.add('popup_opened');
 const closePopup = popupWindow => popupWindow.classList.remove('popup_opened');
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerEditProfile = evt => {
-  evt.preventDefault(); // отмена значения по дефолту
+const formSubmitHandlerEditProfile = () => {
+  // evt.preventDefault(); // отмена значения по дефолту // убрал, т.к. это делает валидация
   nameProfile.textContent = nameInput.value; // записываем в HTML значения введённые в форму
   jobProfile.textContent = jobInput.value;
   closePopup(popupEditProfile);
-}
+};
 
 //обработчик клика по кнопке "ред-ть профиль"
 editButton.addEventListener('click', () => {
@@ -123,8 +123,8 @@ addButton.addEventListener('click', () => {
 closeButtonFormCards.addEventListener('click', () => closePopup(popupElementCreateCards) ); // обработчик клика по кнопке "X"
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerAddCard = evt => {
-  evt.preventDefault();
+const formSubmitHandlerAddCard = () => {
+  // evt.preventDefault(); // убрал, т.к. это делает валидация
   const inputNameValue = titleInput.value;
   const inputLinkValue = linkInput.value;
   const newCardName = createCardDomNode( {name: inputNameValue, link: inputLinkValue} ); // передаём новый элемент массива
@@ -135,3 +135,13 @@ const formSubmitHandlerAddCard = evt => {
 formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
 
 closeButtonPicture.addEventListener('click', () => closePopup(popupPicture) ); // обработчик клика по кнопке X попапа картинки на полный экран
+
+// вызываем функцию, включающую валидацию форм, передаём в неё объект с конфигом (для универсальности)
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_has-error',
+  errorClass: 'popup__error_opened'
+});

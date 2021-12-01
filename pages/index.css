@@ -90,9 +90,17 @@
 @import url(../blocks/popup/__label/popup__label.css);
 /* окно ввода */
 @import url(../blocks/popup/__input/popup__input.css);
+/* модификатор для ошибки (закрашивает текст и рамку в случае ошибки) */
+@import url(../blocks/popup/__input/_has-error/popup__input_has-error.css);
 /* кнопка сохранения */
 @import url(../blocks/popup/__save-button/popup__save-button.css);
+/* модификатор для неактивной кнопки */
+@import url(../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css);
 /* кнопка закрытия поп-ап,а */
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 /* общий модификатор для всех Х */
 @import url(../blocks/popup/__close-button/_general/popup__close-button_general.css);
+/* стиль ошибки (span) */
+@import url(../blocks/popup/__error/popup__error.css);
+/* открывающий модификатор для ошибки */
+@import url(../blocks/popup/__error/_opened/popup__error_opened.css);

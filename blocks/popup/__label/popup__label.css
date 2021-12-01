@@ -1,7 +1,7 @@
 .popup__label {
   display: flex;
   margin-bottom: 17px;
-
+  position: relative;
 }
 
 .popup__label:last-of-type {
