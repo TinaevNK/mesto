@@ -15,7 +15,7 @@
   transition: opacity .3s ease;
 }
 
-.popup__save-button:hover:hover {
+.popup__save-button:hover {
   opacity: .8;
   cursor: pointer;
 }
