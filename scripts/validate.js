@@ -1,65 +1,59 @@
-// валидация
+// валидация форм
+
+// функция для скрытия ошибок
+const hideInputError = (formElementGeneral, inputElement, config) => {
+  const { inputErrorClass, errorClass } = config // деструктуризируем объяект со свойствами
+  const errorElement = formElementGeneral.querySelector(`#${inputElement.id}-error`); // находим инпут с ошибкой
+  inputElement.classList.remove(inputErrorClass); // удаляем класс "ошибочного поля"
+  errorElement.classList.remove(errorClass); // удаляем класс ошибки
+  errorElement.textContent = ''; // удаляем текст ошибки
+};
+
+// функция для показа ошибок
+const showInputError = (inputElement, { inputErrorClass, errorClass }) => {
+  const errorElement = inputElement.closest('.popup__form').querySelector(`#${inputElement.id}-error`); // ищем span с ошибкой
+  inputElement.classList.add(inputErrorClass); // добавим класс ошибки полю
+  errorElement.textContent = inputElement.validationMessage; // текст сообщения оставляем стандартным
+  errorElement.classList.add(errorClass); // добавим стилизационный класс ошибке
+};
+
+// функция проверки валидна форма или нет
+const checkInputValidity = (formElementGeneral, inputElement, config) => {
+  if (inputElement.validity.valid) { // если валидна - скроем ошибки
+    hideInputError(formElementGeneral, inputElement, config);
+  } else { // если невалидна - подсветим ошибки
+    showInputError(inputElement, config);
+  };
+};
+
+// функция смены состояния кнопки сабмита формы
+const toggleButtonState = (formElementGeneral, buttonElement, inactiveButtonClass) => {
+  const isFormValid = formElementGeneral.checkValidity(); // "чекаем" валидна ли форма
+  buttonElement.classList.toggle(inactiveButtonClass, !isFormValid); // если невалидна - отключаем кнопку. И наоборот
+  buttonElement.disabled = !isFormValid; // если невалидна - добавляем кнопке класс. И наоборот
+};
 
 // функция навешивания обработчиков
-const setEventListeners = (formElementGeneral, { inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
-  formElementGeneral.addEventListener('submit', e => e.preventDefault());
-  const inputList = Array.from(formElementGeneral.querySelectorAll(inputSelector));
-  const buttonElement =  formElementGeneral.querySelector(submitButtonSelector);
-  toggleButtonState(formElementGeneral, buttonElement, inactiveButtonClass);
-  inputList.forEach((inputElement) => {
+const setEventListeners = (formElementGeneral, config) => {
+  // разбиваем наши props(config) на составляющие, чтобы далее передать по коду
+  const { inputSelector, submitButtonSelector, inactiveButtonClass, errorClass, inputErrorClass } = config;
+  const inputList = Array.from(formElementGeneral.querySelectorAll(inputSelector)); // находим все поля формы и делаем из них массив
+  const buttonElement =  formElementGeneral.querySelector(submitButtonSelector); // ищем кнопку сабмита
+  toggleButtonState(formElementGeneral, buttonElement, inactiveButtonClass); // делаем кнопку неактивной, при открытии страницы
+  inputList.forEach((inputElement) => { //слушатель на ввод в поля(инпуты)
     inputElement.addEventListener('input', () => {
-      checkInputValidity(formElementGeneral, inputElement, { inputErrorClass, errorClass });
-      toggleButtonState(formElementGeneral, buttonElement, inactiveButtonClass);
-    })
-  })
-}
-
-const checkInputValidity = (formElementGeneral, inputElement, { inputErrorClass, errorClass }) => {
-  if (inputElement.validity.valid) {
-    hideInputError(formElementGeneral, inputElement, { inputErrorClass, errorClass })
-  }
-  else {
-    showInputError(formElementGeneral, inputElement, inputElement.validationMessage, { inputErrorClass, errorClass })
-  }
+      checkInputValidity(formElementGeneral, inputElement, { inputErrorClass, errorClass }); // проверяем валидно ли
+      toggleButtonState(formElementGeneral, buttonElement, inactiveButtonClass); // если валидно то уберём ошибки, если нет - подсветим их
+    });
+  });
 };
 
-const hideInputError = (formElementGeneral, inputElement, { inputErrorClass, errorClass }) => {
-  const errorElement = formElementGeneral.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass);
-  errorElement.classList.remove(errorClass);
-  errorElement.textContent = '';
-};
-
-const showInputError = (formElementGeneral, inputElement, errorMessage, { inputErrorClass, errorClass }) => {
-  const errorElement = formElementGeneral.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add(inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(errorClass);
-};
-
-const toggleButtonState = (formElementGeneral, buttonElement, inactiveButtonClass) => {
-  const isFormValid = formElementGeneral.checkValidity();
-  buttonElement.classList.toggle(inactiveButtonClass, !isFormValid);
-  buttonElement.disabled = !isFormValid;
-};
-
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_has-error',
-  errorClass: 'popup__error_opened'
-}
-
+// функция включения валидации по всем формам на странице
 const enableValidation = (config) => {
-  const { formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass } = config;
-  const forms = document.querySelectorAll(formSelector);
-  forms.forEach(form => {
-    const objParameters = { inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass };
-    setEventListeners(form, objParameters)
-  })
-}
-
-
+  const { formSelector, ...props} = config; // извлекаем formSelector, а остальные свойства помещаем в объект props.
+  const forms = Array.from(document.querySelectorAll(formSelector)); // ищем все формы и делаем из них массив
+  forms.forEach(form => { // проходимся по массиву и выделяем отдельные формы
+    form.addEventListener('submit', evt => evt.preventDefault()); // отменяем действие по умолчанию у события submit каждой формы
+    setEventListeners(form, props); //объект props передаём дальше и вызываем функцию
+  });
+};
