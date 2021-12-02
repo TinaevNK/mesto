@@ -62,11 +62,24 @@ popupAll.forEach(popup => {
   });
 });
 
+// колбэк для закрытия попапа по клавише Escape
+const setExitPopupByEsc = evt => {
+  if (evt.key ==="Escape") {
+    closePopup(document.querySelector(".popup_opened"));
+  };
+};
+
 // объявляем функцию открытия поп-ап,а и добавляем модификатор
-const openPopup = popupWindow => popupWindow.classList.add('popup_opened');
+const openPopup = popupWindow => {
+  popupWindow.classList.add('popup_opened');
+  document.addEventListener('keydown', setExitPopupByEsc); // добавляем слушатель по клавише Esc при открытии попапа
+};
 
 // объявляем функцию закрытия поп-ап,а
-const closePopup = popupWindow => popupWindow.classList.remove('popup_opened');
+const closePopup = popupWindow => {
+  document.removeEventListener('keydown', setExitPopupByEsc); // удаляем слушатель перед закрытием попапа
+  popupWindow.classList.remove('popup_opened');
+};
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
 const formSubmitHandlerEditProfile = () => {
