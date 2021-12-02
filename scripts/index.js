@@ -1,7 +1,6 @@
 // попап редактирования профиля
 
 const popupEditProfile = document.querySelector('#popup-edit'); // попап ред-ия профиля
-const closeButtonEditProfile = popupEditProfile.querySelector('.popup__close-button_general'); // кнопка закрытия попапа ред-ия профиля
 const editButton = document.querySelector('#profile__edit-button'); // кнопка "ред-ть профиль"
 const formElement = document.querySelector('#popup-edit__form'); // форма попапа ред-ия профиля
 const nameInput = formElement.querySelector('#name'); // её <input> с именем;
@@ -40,27 +39,36 @@ const cardContainer = document.querySelector('.elements__list'); // находи
 
 // попап добавления карточек
 const popupElementCreateCards = document.querySelector('#popup-create-card'); // находим попап с добавлением карточек
-const closeButtonFormCards = popupElementCreateCards.querySelector('.popup__close-button_general'); // кнопка закрытия этого попапа
 const addButton = document.querySelector('.profile__add-button'); // кнопка добавления карточки (+)
 const formElementCreateCards = popupElementCreateCards.querySelector('#popup-create-card__form'); // ищем форму добавления карточек
 const titleInput = formElementCreateCards.querySelector('#create-card__title'); // её <input> c названием карточки
 const linkInput = formElementCreateCards.querySelector('#create-card__link'); // её <input> с ссылкой на карточку
+const popupCreateCardButton = popupElementCreateCards.querySelector('#popup-create-card__save-button'); //  кнопка добавления карточки
 
 // добавление просмотра картинки на весь экран
 const popupPicture = document.querySelector('#popup-picture'); // ищем наш попап
 const closeButtonPicture = popupPicture.querySelector('.popup__close-button_general'); //его кнопка закрытия
 const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото в попапе
 const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
-const popupAll = Array.from(document.querySelectorAll('.popup')); // создаём массив из всех попапов
+const allPopups = Array.from(document.querySelectorAll('.popup')); // создаём массив из всех попапов
 
-// реализация закрытия по клику на оверлей
-popupAll.forEach(popup => {
-  popup.addEventListener("click", evt => {
-    if (evt.target === popup) {
-      closePopup(popup); // ввиду асинхронности кода, мы можем вызывать функцию до её объявления, т.к. интерпритатор на момент клика уже занесёт её в память
-    };
+// проходимся по всем попапам
+allPopups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) { // если кликнутый элемент содержит написанный класс - закрой попап
+        closePopup(popup) // закрытие по оверлею
+      };
+      if (evt.target.classList.contains('popup__close-button_general')) {
+        closePopup(popup) // закрытие по кнопке "Х"
+      };
   });
 });
+
+// объявляем функцию сброса кнопки сохранения данных
+const disabledButton = button => {
+  button.disabled = true;
+  button.classList.add('popup__save-button_disabled');
+};
 
 // колбэк для закрытия попапа по клавише Escape
 const setExitPopupByEsc = evt => {
@@ -69,13 +77,13 @@ const setExitPopupByEsc = evt => {
   };
 };
 
-// объявляем функцию открытия поп-ап,а и добавляем модификатор
+// объявляем функцию открытия попапа и добавляем модификатор
 const openPopup = popupWindow => {
   popupWindow.classList.add('popup_opened');
   document.addEventListener('keydown', setExitPopupByEsc); // добавляем слушатель по клавише Esc при открытии попапа
 };
 
-// объявляем функцию закрытия поп-ап,а
+// объявляем функцию закрытия попапа
 const closePopup = popupWindow => {
   document.removeEventListener('keydown', setExitPopupByEsc); // удаляем слушатель перед закрытием попапа
   popupWindow.classList.remove('popup_opened');
@@ -89,14 +97,12 @@ const formSubmitHandlerEditProfile = evt => {
   closePopup(popupEditProfile);
 };
 
-//обработчик клика по кнопке "ред-ть профиль"
+//обработчик клика по кнопке "редактировать профиль"
 editButton.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
   jobInput.value = jobProfile.textContent;
-} );
-
-closeButtonEditProfile.addEventListener('click', () => closePopup(popupEditProfile) ); // обработчик клика по кнопке X
+});
 
 formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
 
@@ -132,18 +138,16 @@ const createCardDomNode = card => {
 };
 
 // функция добавления карточек
-const addCard = initialCards.map(card => createCardDomNode(card) ); // передаём элементы массива функции и вызываем её
+const createdCards = initialCards.map(card => createCardDomNode(card) ); // передаём элементы массива функции и вызываем её
 
-cardContainer.append(...addCard); // добавление в разметку карточек
+cardContainer.append(...createdCards); // добавление в разметку карточек
 
 // обработчик клика по кнопке (+)
 addButton.addEventListener('click', () => {
   openPopup(popupElementCreateCards);
   titleInput.value = ''; //делаем поля пустыми при открытии попапа
   linkInput.value = '';
-} );
-
-closeButtonFormCards.addEventListener('click', () => closePopup(popupElementCreateCards) ); // обработчик клика по кнопке "X"
+});
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
 const formSubmitHandlerAddCard = evt => {
@@ -152,6 +156,7 @@ const formSubmitHandlerAddCard = evt => {
   const inputLinkValue = linkInput.value;
   const newCardName = createCardDomNode( {name: inputNameValue, link: inputLinkValue} ); // передаём новый элемент массива
   cardContainer.prepend(newCardName); //добавляем в начало массива новую карточку
+  disabledButton(popupCreateCardButton); // вызываем функцию, которая отключит кнопку добавления карточки после её добавления на страницу
   closePopup(popupElementCreateCards);
 };
 
