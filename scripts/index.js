@@ -51,16 +51,39 @@ const popupPicture = document.querySelector('#popup-picture'); // ищем на�
 const closeButtonPicture = popupPicture.querySelector('.popup__close-button_general'); //его кнопка закрытия
 const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото в попапе
 const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
+const popupAll = Array.from(document.querySelectorAll('.popup')); // создаём массив из всех попапов
+
+// реализация закрытия по клику на оверлей
+popupAll.forEach(popup => {
+  popup.addEventListener("click", evt => {
+    if (evt.target === popup) {
+      closePopup(popup); // ввиду асинхронности кода, мы можем вызывать функцию до её объявления, т.к. интерпритатор на момент клика уже занесёт её в память
+    };
+  });
+});
+
+// колбэк для закрытия попапа по клавише Escape
+const setExitPopupByEsc = evt => {
+  if (evt.key ==="Escape") {
+    closePopup(document.querySelector(".popup_opened"));
+  };
+};
 
 // объявляем функцию открытия поп-ап,а и добавляем модификатор
-const openPopup = popupWindow => popupWindow.classList.add('popup_opened');
+const openPopup = popupWindow => {
+  popupWindow.classList.add('popup_opened');
+  document.addEventListener('keydown', setExitPopupByEsc); // добавляем слушатель по клавише Esc при открытии попапа
+};
 
 // объявляем функцию закрытия поп-ап,а
-const closePopup = popupWindow => popupWindow.classList.remove('popup_opened');
+const closePopup = popupWindow => {
+  document.removeEventListener('keydown', setExitPopupByEsc); // удаляем слушатель перед закрытием попапа
+  popupWindow.classList.remove('popup_opened');
+};
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerEditProfile = () => {
-  // evt.preventDefault(); // отмена значения по дефолту // убрал, т.к. это делает валидация
+const formSubmitHandlerEditProfile = evt => {
+  evt.preventDefault(); // отмена значения по дефолту
   nameProfile.textContent = nameInput.value; // записываем в HTML значения введённые в форму
   jobProfile.textContent = jobInput.value;
   closePopup(popupEditProfile);
@@ -123,8 +146,8 @@ addButton.addEventListener('click', () => {
 closeButtonFormCards.addEventListener('click', () => closePopup(popupElementCreateCards) ); // обработчик клика по кнопке "X"
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerAddCard = () => {
-  // evt.preventDefault(); // убрал, т.к. это делает валидация
+const formSubmitHandlerAddCard = evt => {
+  evt.preventDefault();
   const inputNameValue = titleInput.value;
   const inputLinkValue = linkInput.value;
   const newCardName = createCardDomNode( {name: inputNameValue, link: inputLinkValue} ); // передаём новый элемент массива
