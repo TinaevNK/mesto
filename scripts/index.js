@@ -82,8 +82,8 @@ const closePopup = popupWindow => {
 };
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerEditProfile = () => {
-  // evt.preventDefault(); // отмена значения по дефолту // убрал, т.к. это делает валидация
+const formSubmitHandlerEditProfile = evt => {
+  evt.preventDefault(); // отмена значения по дефолту
   nameProfile.textContent = nameInput.value; // записываем в HTML значения введённые в форму
   jobProfile.textContent = jobInput.value;
   closePopup(popupEditProfile);
@@ -146,8 +146,8 @@ addButton.addEventListener('click', () => {
 closeButtonFormCards.addEventListener('click', () => closePopup(popupElementCreateCards) ); // обработчик клика по кнопке "X"
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerAddCard = () => {
-  // evt.preventDefault(); // убрал, т.к. это делает валидация
+const formSubmitHandlerAddCard = evt => {
+  evt.preventDefault();
   const inputNameValue = titleInput.value;
   const inputLinkValue = linkInput.value;
   const newCardName = createCardDomNode( {name: inputNameValue, link: inputLinkValue} ); // передаём новый элемент массива
