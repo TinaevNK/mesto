@@ -51,6 +51,16 @@ const popupPicture = document.querySelector('#popup-picture'); // ищем на�
 const closeButtonPicture = popupPicture.querySelector('.popup__close-button_general'); //его кнопка закрытия
 const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото в попапе
 const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
+const popupAll = Array.from(document.querySelectorAll('.popup')); // создаём массив из всех попапов
+
+// реализация закрытия по клику на оверлей
+popupAll.forEach(popup => {
+  popup.addEventListener("click", evt => {
+    if (evt.target === popup) {
+      closePopup(popup); // ввиду асинхронности кода, мы можем вызывать функцию до её объявления, т.к. интерпритатор на момент клика уже занесёт её в память
+    };
+  });
+});
 
 // объявляем функцию открытия поп-ап,а и добавляем модификатор
 const openPopup = popupWindow => popupWindow.classList.add('popup_opened');
