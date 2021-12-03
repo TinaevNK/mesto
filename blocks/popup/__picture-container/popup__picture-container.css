@@ -5,4 +5,5 @@
   color: white;
   display: grid;
   gap: 10px;
+  cursor: default;
 }
