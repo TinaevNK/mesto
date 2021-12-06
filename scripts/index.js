@@ -102,6 +102,8 @@ editButton.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
   jobInput.value = jobProfile.textContent;
+  hideInputError(formElement, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  hideInputError(formElement, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
 });
 
 formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
@@ -147,6 +149,8 @@ addButton.addEventListener('click', () => {
   openPopup(popupElementCreateCards);
   titleInput.value = ''; //делаем поля пустыми при открытии попапа
   linkInput.value = '';
+  hideInputError(popupElementCreateCards, titleInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  hideInputError(popupElementCreateCards, linkInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
 });
 
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
@@ -173,7 +177,3 @@ enableValidation({
   inputErrorClass: 'popup__input_has-error',
   errorClass: 'popup__error_opened'
 });
-
-// Геннадий, хотел бы лично поблагодарить Вас за такое качественное и быстрое ревью!
-// Благодаря Вам - мы учимся чему-то новому!
-// Надеюсь все комментарии понял правильно
