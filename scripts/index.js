@@ -53,17 +53,17 @@ const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото 
 const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
 const allPopups = Array.from(document.querySelectorAll('.popup')); // создаём массив из всех попапов
 
-// // проходимся по всем попапам
-// allPopups.forEach((popup) => {
-//   popup.addEventListener('click', (evt) => {
-//       if (evt.target.classList.contains('popup_opened')) { // если кликнутый элемент содержит написанный класс - закрой попап
-//         closePopup(popup) // закрытие по оверлею
-//       };
-//       if (evt.target.classList.contains('popup__close-button_general')) {
-//         closePopup(popup) // закрытие по кнопке "Х"
-//       };
-//   });
-// });
+// проходимся по всем попапам
+allPopups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) { // если кликнутый элемент содержит написанный класс - закрой попап
+        closePopup(popup) // закрытие по оверлею
+      };
+      if (evt.target.classList.contains('popup__close-button_general')) {
+        closePopup(popup) // закрытие по кнопке "Х"
+      };
+  });
+});
 
 // // объявляем функцию сброса кнопки сохранения данных
 // const disabledButton = button => {
@@ -71,53 +71,43 @@ const allPopups = Array.from(document.querySelectorAll('.popup')); // созда
 //   button.classList.add('popup__save-button_disabled');
 // };
 
-// // колбэк для закрытия попапа по клавише Escape
-// const setExitPopupByEsc = evt => {
-//   if (evt.key ==="Escape") {
-//     closePopup(document.querySelector(".popup_opened"));
-//   };
-// };
+// колбэк для закрытия попапа по клавише Escape
+const setExitPopupByEsc = evt => {
+  if (evt.key ==="Escape") {
+    closePopup(document.querySelector(".popup_opened"));
+  };
+};
 
-// // объявляем функцию открытия попапа и добавляем модификатор
-// const openPopup = popupWindow => {
-//   popupWindow.classList.add('popup_opened');
-//   document.addEventListener('keydown', setExitPopupByEsc); // добавляем слушатель по клавише Esc при открытии попапа
-// };
+// объявляем функцию открытия попапа и добавляем модификатор
+const openPopup = popupWindow => {
+  popupWindow.classList.add('popup_opened');
+  document.addEventListener('keydown', setExitPopupByEsc); // добавляем слушатель по клавише Esc при открытии попапа
+};
 
-// // объявляем функцию закрытия попапа
-// const closePopup = popupWindow => {
-//   document.removeEventListener('keydown', setExitPopupByEsc); // удаляем слушатель перед закрытием попапа
-//   popupWindow.classList.remove('popup_opened');
-// };
+// объявляем функцию закрытия попапа
+const closePopup = popupWindow => {
+  document.removeEventListener('keydown', setExitPopupByEsc); // удаляем слушатель перед закрытием попапа
+  popupWindow.classList.remove('popup_opened');
+};
 
-// // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-// const formSubmitHandlerEditProfile = evt => {
-//   evt.preventDefault(); // отмена значения по дефолту
-//   nameProfile.textContent = nameInput.value; // записываем в HTML значения введённые в форму
-//   jobProfile.textContent = jobInput.value;
-//   closePopup(popupEditProfile);
-// };
+// объявляем функцию сохраниния наших данных по кнопке "сохранить"
+const formSubmitHandlerEditProfile = evt => {
+  evt.preventDefault(); // отмена значения по дефолту
+  nameProfile.textContent = nameInput.value; // записываем в HTML значения введённые в форму
+  jobProfile.textContent = jobInput.value;
+  closePopup(popupEditProfile);
+};
 
-// //обработчик клика по кнопке "редактировать профиль"
-// editButton.addEventListener('click', () => {
-//   openPopup(popupEditProfile);
-//   nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
-//   jobInput.value = jobProfile.textContent;
-//   hideInputError(formElement, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-//   hideInputError(formElement, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-// });
+//обработчик клика по кнопке "редактировать профиль"
+editButton.addEventListener('click', () => {
+  openPopup(popupEditProfile);
+  nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
+  jobInput.value = jobProfile.textContent;
+  hideInputError(formElement, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  hideInputError(formElement, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+});
 
-// formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
-
-// // реализация лайка
-// const likeCard = cardTemplateElement => {
-//   cardTemplateElement.querySelector('.element__like-button').addEventListener('click', evt => evt.target.classList.toggle('element__like-button_active') );
-// };
-
-// // реализация удаления карточки
-// const deleteCard = cardTemplateElement => {
-//   cardTemplateElement.querySelector('.element__delete-button').addEventListener('click', () => cardTemplateElement.remove() );
-// };
+formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
 
 // // функция рендеринга карточек
 // const createCardDomNode = card => {
@@ -145,14 +135,14 @@ const allPopups = Array.from(document.querySelectorAll('.popup')); // созда
 
 // cardContainer.append(...createdCards); // добавление в разметку карточек
 
-// // обработчик клика по кнопке (+)
-// addButton.addEventListener('click', () => {
-//   openPopup(popupElementCreateCards);
-//   titleInput.value = ''; //делаем поля пустыми при открытии попапа
-//   linkInput.value = '';
-//   hideInputError(popupElementCreateCards, titleInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-//   hideInputError(popupElementCreateCards, linkInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-// });
+// обработчик клика по кнопке (+)
+addButton.addEventListener('click', () => {
+  openPopup(popupElementCreateCards);
+  titleInput.value = ''; //делаем поля пустыми при открытии попапа
+  linkInput.value = '';
+  // hideInputError(popupElementCreateCards, titleInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  // hideInputError(popupElementCreateCards, linkInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+});
 
 // // объявляем функцию сохраниния наших данных по кнопке "сохранить"
 // const formSubmitHandlerAddCard = evt => {
@@ -167,8 +157,6 @@ const allPopups = Array.from(document.querySelectorAll('.popup')); // созда
 
 // formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
 
-// closeButtonPicture.addEventListener('click', () => closePopup(popupPicture) ); // обработчик клика по кнопке X попапа картинки на полный экран
-
 // // вызываем функцию, включающую валидацию форм, передаём в неё объект с конфигом (для универсальности)
 // enableValidation({
 //   formSelector: '.popup__form',
@@ -179,9 +167,26 @@ const allPopups = Array.from(document.querySelectorAll('.popup')); // созда
 //   errorClass: 'popup__error_opened'
 // });
 
-initialCards.forEach(item => {
-  const cardList = new Card(item, '#cardTemplate');
-  const cardElement = cardList.createCard();
+const fillPopupFullScreenCard = (picture, text) => {
+  popupPhotoLink.src = picture.src;
+  popupPhotoLink.alt = text.textContent;
+  popupPhotoName.textContent = text.textContent;
+}
+
+const setPictureClickHandler = card => {
+  const picture = card.querySelector('.element__photo');
+  const text = card.querySelector('.element__title');
+  picture.addEventListener('click', () => {
+    fillPopupFullScreenCard(picture, text);
+    openPopup(popupPicture);
+  })
+}
+
+const instruction = cardElement => setPictureClickHandler(cardElement);
+
+initialCards.forEach(item => { // проходимся по массиву
+  const cardList = new Card(item, '#cardTemplate', instruction); // передаём данные в класс
+  const cardElement = cardList.createCard(); // используем публичный метод класса для создания карточек
 
   document.querySelector('.elements__list').append(cardElement);
-})
+});
