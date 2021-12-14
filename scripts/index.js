@@ -179,9 +179,6 @@ const allPopups = Array.from(document.querySelectorAll('.popup')); // созда
 //   errorClass: 'popup__error_opened'
 // });
 
-const cardContainer = document.querySelector('.elements__list'); // находим контейнер, куда будем вставлять клоны шаблона
-
-
 initialCards.forEach(item => {
   const cardList = new Card(item, '#cardTemplate');
   const cardElement = cardList.createCard();
