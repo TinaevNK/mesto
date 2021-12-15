@@ -98,14 +98,15 @@ const formSubmitHandlerEditProfile = evt => {
   closePopup(popupEditProfile);
 };
 
-//обработчик клика по кнопке "редактировать профиль"
-editButton.addEventListener('click', () => {
+const openPopupEditProfile = () => {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
   jobInput.value = jobProfile.textContent;
-  hideInputError(formElement, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-  hideInputError(formElement, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-});
+  // hideInputError(formElement, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  // hideInputError(formElement, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+};
+
+editButton.addEventListener('click', openPopupEditProfile); //обработчик клика по кнопке "редактировать профиль"
 
 formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
 
@@ -135,27 +136,32 @@ formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обр�
 
 // cardContainer.append(...createdCards); // добавление в разметку карточек
 
-// обработчик клика по кнопке (+)
-addButton.addEventListener('click', () => {
+const openPopupAddCard = () => { // функция для открытия попапа добавления карточки (+)
   openPopup(popupElementCreateCards);
   titleInput.value = ''; //делаем поля пустыми при открытии попапа
   linkInput.value = '';
   // hideInputError(popupElementCreateCards, titleInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
   // hideInputError(popupElementCreateCards, linkInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-});
+};
 
-// // объявляем функцию сохраниния наших данных по кнопке "сохранить"
-// const formSubmitHandlerAddCard = evt => {
-//   evt.preventDefault();
-//   const inputNameValue = titleInput.value;
-//   const inputLinkValue = linkInput.value;
-//   const newCardName = createCardDomNode( {name: inputNameValue, link: inputLinkValue} ); // передаём новый элемент массива
-//   cardContainer.prepend(newCardName); //добавляем в начало массива новую карточку
-//   disabledButton(popupCreateCardButton); // вызываем функцию, которая отключит кнопку добавления карточки после её добавления на страницу
-//   closePopup(popupElementCreateCards);
-// };
+addButton.addEventListener('click', openPopupAddCard); // обработчик клика по кнопке (+)
 
-// formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
+// объявляем функцию сохраниния наших данных по кнопке "сохранить"
+const formSubmitHandlerAddCard = evt => {
+  evt.preventDefault();
+  const inputNameValue = titleInput.value;
+  const inputLinkValue = linkInput.value;
+  let newCardData = {
+    name: inputNameValue,
+    link: inputLinkValue
+  };
+  // тут нужна доработка
+  cardContainer.prepend(newCardName); //добавляем в начало массива новую карточку
+  disabledButton(popupCreateCardButton); // вызываем функцию, которая отключит кнопку добавления карточки после её добавления на страницу
+  closePopup(popupElementCreateCards);
+};
+
+formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
 
 // // вызываем функцию, включающую валидацию форм, передаём в неё объект с конфигом (для универсальности)
 // enableValidation({
