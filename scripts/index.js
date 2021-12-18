@@ -1,11 +1,12 @@
 import { Card } from "./Card.js";
-// попап редактирования профиля
+import { FormValidator } from "./FormValidator.js";
 
+// попап редактирования профиля
 const popupEditProfile = document.querySelector('#popup-edit'); // попап ред-ия профиля
 const editButton = document.querySelector('#profile__edit-button'); // кнопка "ред-ть профиль"
-const formElement = document.querySelector('#popup-edit__form'); // форма попапа ред-ия профиля
-const nameInput = formElement.querySelector('#name'); // её <input> с именем;
-const jobInput = formElement.querySelector('#job'); // её <input> с работой
+const formElementEditProfile = document.querySelector('#popup-edit__form'); // форма попапа ред-ия профиля
+const nameInput = formElementEditProfile.querySelector('#name'); // её <input> с именем;
+const jobInput = formElementEditProfile.querySelector('#job'); // её <input> с работой
 const nameProfile = document.querySelector('.profile__name'); // ищем в документе поле с именем
 const jobProfile = document.querySelector('.profile__job'); // ищем в документе поле с работой
 
@@ -102,13 +103,13 @@ const openPopupEditProfile = () => {
   openPopup(popupEditProfile);
   nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
   jobInput.value = jobProfile.textContent;
-  // hideInputError(formElement, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-  // hideInputError(formElement, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  // hideInputError(formElementEditProfile, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  // hideInputError(formElementEditProfile, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
 };
 
 editButton.addEventListener('click', openPopupEditProfile); //обработчик клика по кнопке "редактировать профиль"
 
-formElement.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
+formElementEditProfile.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
 
 // // функция рендеринга карточек
 // const createCardDomNode = card => {
@@ -160,7 +161,35 @@ const formSubmitHandlerAddCard = evt => {
 
 formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
 
-// // вызываем функцию, включающую валидацию форм, передаём в неё объект с конфигом (для универсальности)
+const fillPopupFullScreenCard = (picture, text) => { // при клике на карточку - она откроется на весь экран и заполнит данные в разметке
+  popupPhotoLink.src = picture.src;
+  popupPhotoLink.alt = text.textContent;
+  popupPhotoName.textContent = text.textContent;
+};
+
+const setPictureClickHandler = card => { // вешаем обработчики по клику на каждую карточку
+  const picture = card.querySelector('.element__photo');
+  const text = card.querySelector('.element__title');
+  picture.addEventListener('click', () => {
+    fillPopupFullScreenCard(picture, text);
+    openPopup(popupPicture);
+  });
+};
+
+const instruction = cardElement => setPictureClickHandler(cardElement); // задел на будущее, если инструкций будет много.
+
+const addCard = cardData => {
+  const cardList = new Card(cardData, '#cardTemplate', instruction); // передаём данные в класс
+  const cardElement = cardList.createCard(); // используем публичный метод класса для создания карточек
+  document.querySelector('.elements__list').prepend(cardElement);
+};
+
+initialCards.reverse().forEach(cardDataArray => addCard(cardDataArray)); // рендер изначального массива.
+// чтобы не писать фунцию под рендер и под добавление новых карт из формы, решил перед проходом по изначальному
+// массиву перевернуть его, чтобы prepend одинаково хорошо работал и для новых карт и для массива initialCards
+
+
+// вызываем функцию, включающую валидацию форм, передаём в неё объект с конфигом (для универсальности)
 // enableValidation({
 //   formSelector: '.popup__form',
 //   inputSelector: '.popup__input',
@@ -170,29 +199,16 @@ formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // 
 //   errorClass: 'popup__error_opened'
 // });
 
-const fillPopupFullScreenCard = (picture, text) => { // при клике на карточку - она откроется на весь экран и заполнит данные в разметке
-  popupPhotoLink.src = picture.src;
-  popupPhotoLink.alt = text.textContent;
-  popupPhotoName.textContent = text.textContent;
+const config = {
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_has-error',
+  errorClass: 'popup__error_opened'
 }
 
-const setPictureClickHandler = card => { // вешаем обработчики по клику на каждую карточку
-  const picture = card.querySelector('.element__photo');
-  const text = card.querySelector('.element__title');
-  picture.addEventListener('click', () => {
-    fillPopupFullScreenCard(picture, text);
-    openPopup(popupPicture);
-  })
-}
+const ValitatorAddCard = new FormValidator(config, formElementCreateCards);
+ValitatorAddCard.enableValidation();
 
-const instruction = cardElement => setPictureClickHandler(cardElement); // задел на будущее, если инструкций будет много.
-
-const addCard = cardData => {
-  const cardList = new Card(cardData, '#cardTemplate', instruction); // передаём данные в класс
-  const cardElement = cardList.createCard(); // используем публичный метод класса для создания карточек
-  document.querySelector('.elements__list').prepend(cardElement);
-}
-
-initialCards.reverse().forEach(cardDataArray => addCard(cardDataArray)); // рендер изначального массива.
-// чтобы не писать фунцию под рендер и под добавление новых карт из формы, решил перед проходом по изначальному
-// массиву перевернуть его, чтобы prepend одинаково хорошо работал и для новых карт и для массива initialCards
+const ValitatorEditProfile = new FormValidator(config, formElementEditProfile);
+ValitatorEditProfile.enableValidation();
