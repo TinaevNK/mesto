@@ -149,16 +149,13 @@ addButton.addEventListener('click', openPopupAddCard); // обработчик �
 // объявляем функцию сохраниния наших данных по кнопке "сохранить"
 const formSubmitHandlerAddCard = evt => {
   evt.preventDefault();
-  const inputNameValue = titleInput.value;
-  const inputLinkValue = linkInput.value;
-  let newCardData = {
-    name: inputNameValue,
-    link: inputLinkValue
+  const newCardData = {
+    name: titleInput.value,
+    link: linkInput.value
   };
-  // тут нужна доработка
-  cardContainer.prepend(newCardName); //добавляем в начало массива новую карточку
-  disabledButton(popupCreateCardButton); // вызываем функцию, которая отключит кнопку добавления карточки после её добавления на страницу
+  addCard(newCardData);
   closePopup(popupElementCreateCards);
+  // disabledButton(popupCreateCardButton); // вызываем функцию, которая отключит кнопку добавления карточки после её добавления на страницу
 };
 
 formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
@@ -173,13 +170,13 @@ formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // 
 //   errorClass: 'popup__error_opened'
 // });
 
-const fillPopupFullScreenCard = (picture, text) => {
+const fillPopupFullScreenCard = (picture, text) => { // при клике на карточку - она откроется на весь экран и заполнит данные в разметке
   popupPhotoLink.src = picture.src;
   popupPhotoLink.alt = text.textContent;
   popupPhotoName.textContent = text.textContent;
 }
 
-const setPictureClickHandler = card => {
+const setPictureClickHandler = card => { // вешаем обработчики по клику на каждую карточку
   const picture = card.querySelector('.element__photo');
   const text = card.querySelector('.element__title');
   picture.addEventListener('click', () => {
@@ -188,11 +185,14 @@ const setPictureClickHandler = card => {
   })
 }
 
-const instruction = cardElement => setPictureClickHandler(cardElement);
+const instruction = cardElement => setPictureClickHandler(cardElement); // задел на будущее, если инструкций будет много.
 
-initialCards.forEach(item => { // проходимся по массиву
-  const cardList = new Card(item, '#cardTemplate', instruction); // передаём данные в класс
+const addCard = cardData => {
+  const cardList = new Card(cardData, '#cardTemplate', instruction); // передаём данные в класс
   const cardElement = cardList.createCard(); // используем публичный метод класса для создания карточек
+  document.querySelector('.elements__list').prepend(cardElement);
+}
 
-  document.querySelector('.elements__list').append(cardElement);
-});
+initialCards.reverse().forEach(cardDataArray => addCard(cardDataArray)); // рендер изначального массива.
+// чтобы не писать фунцию под рендер и под добавление новых карт из формы, решил перед проходом по изначальному
+// массиву перевернуть его, чтобы prepend одинаково хорошо работал и для новых карт и для массива initialCards
