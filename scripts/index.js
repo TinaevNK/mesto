@@ -1,3 +1,4 @@
+// импорт классов
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
@@ -38,7 +39,6 @@ const initialCards = [ // первоначальный массив карточ
   }
 ];
 
-
 // попап добавления карточек
 const popupElementCreateCards = document.querySelector('#popup-create-card'); // находим попап с добавлением карточек
 const addButton = document.querySelector('.profile__add-button'); // кнопка добавления карточки (+)
@@ -49,13 +49,11 @@ const popupCreateCardButton = popupElementCreateCards.querySelector('#popup-crea
 
 // добавление просмотра картинки на весь экран
 const popupPicture = document.querySelector('#popup-picture'); // ищем наш попап
-const closeButtonPicture = popupPicture.querySelector('.popup__close-button_general'); //его кнопка закрытия
 const popupPhotoLink = popupPicture.querySelector('.popup__photo'); // фото в попапе
 const popupPhotoName = popupPicture.querySelector('.popup__photo-name'); //подпись к фото
 const allPopups = Array.from(document.querySelectorAll('.popup')); // создаём массив из всех попапов
 
-// проходимся по всем попапам
-allPopups.forEach((popup) => {
+allPopups.forEach((popup) => { // проходимся по всем попапам
   popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('popup_opened')) { // если кликнутый элемент содержит написанный класс - закрой попап
         closePopup(popup) // закрытие по оверлею
@@ -66,100 +64,54 @@ allPopups.forEach((popup) => {
   });
 });
 
-// // объявляем функцию сброса кнопки сохранения данных
-// const disabledButton = button => {
-//   button.disabled = true;
-//   button.classList.add('popup__save-button_disabled');
-// };
-
-// колбэк для закрытия попапа по клавише Escape
-const setExitPopupByEsc = evt => {
+const setExitPopupByEsc = evt => { // колбэк для закрытия попапа по клавише Escape
   if (evt.key ==="Escape") {
     closePopup(document.querySelector(".popup_opened"));
   };
 };
 
-// объявляем функцию открытия попапа и добавляем модификатор
-const openPopup = popupWindow => {
+const openPopup = popupWindow => { // объявляем функцию открытия попапа и добавляем модификатор
   popupWindow.classList.add('popup_opened');
   document.addEventListener('keydown', setExitPopupByEsc); // добавляем слушатель по клавише Esc при открытии попапа
 };
 
-// объявляем функцию закрытия попапа
-const closePopup = popupWindow => {
+const closePopup = popupWindow => { // объявляем функцию закрытия попапа
   document.removeEventListener('keydown', setExitPopupByEsc); // удаляем слушатель перед закрытием попапа
   popupWindow.classList.remove('popup_opened');
 };
 
-// объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerEditProfile = evt => {
+const formSubmitHandlerEditProfile = evt => { // объявляем функцию сохраниния наших данных по кнопке "сохранить"
   evt.preventDefault(); // отмена значения по дефолту
   nameProfile.textContent = nameInput.value; // записываем в HTML значения введённые в форму
   jobProfile.textContent = jobInput.value;
   closePopup(popupEditProfile);
 };
 
-const openPopupEditProfile = () => {
-  openPopup(popupEditProfile);
+const openPopupEditProfile = () => { // функция открытия попапа открытия редактирования профиля
   nameInput.value = nameProfile.textContent; // при открытии попапа в полях будут записаны значения из HTML
   jobInput.value = jobProfile.textContent;
-  // hideInputError(formElementEditProfile, nameInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-  // hideInputError(formElementEditProfile, jobInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  ValitatorEditProfile.clearErrors(); // убираем ошибки при открытии
+  ValitatorEditProfile.disableBtn(); // делаем кнопку сабмита неактивной при открытии
+  openPopup(popupEditProfile);
 };
 
-editButton.addEventListener('click', openPopupEditProfile); //обработчик клика по кнопке "редактировать профиль"
-
-formElementEditProfile.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
-
-// // функция рендеринга карточек
-// const createCardDomNode = card => {
-//   const cardTemplate = document.querySelector('#cardTemplate'); //находим наш шаблон
-//   const cardTemplateElement = cardTemplate.content.querySelector('.element').cloneNode(true); //клонируем
-//   const picture = cardTemplateElement.querySelector('.element__photo');
-//   const text = cardTemplateElement.querySelector('.element__title');
-//   text.textContent = card.name; // заполняем контентом
-//   picture.src = card.link;
-//   picture.alt = card.name;
-//   picture.addEventListener("click", () => { //обработчик клика по фото на карточке, для открытия попапа
-//     popupPhotoLink.src = picture.src;
-//     popupPhotoLink.alt = text.textContent;
-//     popupPhotoName.textContent = text.textContent;
-//     openPopup(popupPicture);
-//   });
-//   likeCard(cardTemplateElement);
-//   deleteCard(cardTemplateElement);
-
-//   return cardTemplateElement;
-// };
-
-// // функция добавления карточек
-// const createdCards = initialCards.map(card => createCardDomNode(card) ); // передаём элементы массива функции и вызываем её
-
-// cardContainer.append(...createdCards); // добавление в разметку карточек
-
-const openPopupAddCard = () => { // функция для открытия попапа добавления карточки (+)
-  openPopup(popupElementCreateCards);
+const openPopupAddCard = () => { // функция открытия попапа открытия добавления карточки
   titleInput.value = ''; //делаем поля пустыми при открытии попапа
   linkInput.value = '';
-  // hideInputError(popupElementCreateCards, titleInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
-  // hideInputError(popupElementCreateCards, linkInput, {inputErrorClass:'popup__input_has-error', errorClass:'popup__error_opened'});
+  ValitatorAddCard.clearErrors();
+  ValitatorAddCard.disableBtn();
+  openPopup(popupElementCreateCards);
 };
 
-addButton.addEventListener('click', openPopupAddCard); // обработчик клика по кнопке (+)
-
-// объявляем функцию сохраниния наших данных по кнопке "сохранить"
-const formSubmitHandlerAddCard = evt => {
+const formSubmitHandlerAddCard = evt => { // объявляем функцию сохраниния наших данных по кнопке "сохранить"
   evt.preventDefault();
-  const newCardData = {
+  const newCardData = { // записываем в объект значения инпутов и передаём его в функцию добавления карточки
     name: titleInput.value,
     link: linkInput.value
   };
   addCard(newCardData);
   closePopup(popupElementCreateCards);
-  // disabledButton(popupCreateCardButton); // вызываем функцию, которая отключит кнопку добавления карточки после её добавления на страницу
 };
-
-formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
 
 const fillPopupFullScreenCard = (picture, text) => { // при клике на карточку - она откроется на весь экран и заполнит данные в разметке
   popupPhotoLink.src = picture.src;
@@ -188,27 +140,21 @@ initialCards.reverse().forEach(cardDataArray => addCard(cardDataArray)); // ре
 // чтобы не писать фунцию под рендер и под добавление новых карт из формы, решил перед проходом по изначальному
 // массиву перевернуть его, чтобы prepend одинаково хорошо работал и для новых карт и для массива initialCards
 
-
-// вызываем функцию, включающую валидацию форм, передаём в неё объект с конфигом (для универсальности)
-// enableValidation({
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__save-button',
-//   inactiveButtonClass: 'popup__save-button_disabled',
-//   inputErrorClass: 'popup__input_has-error',
-//   errorClass: 'popup__error_opened'
-// });
-
 const config = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_has-error',
   errorClass: 'popup__error_opened'
-}
+};
 
 const ValitatorAddCard = new FormValidator(config, formElementCreateCards);
 ValitatorAddCard.enableValidation();
 
 const ValitatorEditProfile = new FormValidator(config, formElementEditProfile);
 ValitatorEditProfile.enableValidation();
+
+editButton.addEventListener('click', openPopupEditProfile); //обработчик клика по кнопке "редактировать профиль"
+formElementEditProfile.addEventListener('submit', formSubmitHandlerEditProfile); // обработчик события по нажатию на "сохранить"
+addButton.addEventListener('click', openPopupAddCard); // обработчик клика по кнопке (+)
+formElementCreateCards.addEventListener('submit', formSubmitHandlerAddCard); // обработчик клике по факту отправки формы
