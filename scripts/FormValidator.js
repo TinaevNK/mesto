@@ -8,34 +8,10 @@ class FormValidator {
     this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
   };
 
-  clearErrors() { // метод очищения ошибок
-    this._inputList.forEach(inputElement => {
-      const errorElement = this._form.querySelectorAll(`#${inputElement.id}-error`);
-      inputElement.classList.remove(this._config.inputErrorClass);
-      errorElement.forEach(errorElementSpan => {
-        errorElementSpan.classList.remove(this._config.errorClass);
-        errorElementSpan.textContent = '';
-      });
-    });
-  };
-
-  _enableBtn() { // метод включения кнопки сабмита формы
-    this._submitButton.
-    classList.
-    remove(this._config.inactiveButtonClass);
-    this._submitButton.disabled = false;
-  };
-
-  disableBtn() { // метод отключения кнопки сабмита формы
-    this._submitButton.
-    classList.
-    add(this._config.inactiveButtonClass);
-    this._submitButton.disabled = true;
-  };
-
-  _toggleButtonState = () => { // метод смены состояния кнопки сабмита формы
+  _toggleButtonState() {
     const isFormValid = this._form.checkValidity(); // "чекаем" валидна ли форма
-    isFormValid ? this._enableBtn() : this.disableBtn(); // если валидна - включаем кнопку сабмита и наоборот
+    this._submitButton.classList.toggle(this._config.inactiveButtonClass, !isFormValid); // если невалидна - отключаем кнопку. И наоборот
+    this._submitButton.disabled = !isFormValid; // если невалидна - добавляем кнопке класс. И наоборот
   };
 
   _hideInputError = inputElement => { // метод для скрытия ошибок
@@ -61,12 +37,18 @@ class FormValidator {
   };
 
   _setEventListeners = () => { // вешаем обработчики на форму
-    this.disableBtn(); // деактивируем кнопку сабмита при загрузке страницы
     this._inputList.forEach(inputElement => { // ищем все инпуты формы
       inputElement.addEventListener('input', () => { // вешаем обработчики на инпуты
         this._checkInputValidity(inputElement); // проверяем валидны ли поля
         this._toggleButtonState(); // если валидно - уберём ошибки, и наоборот
       });
+    });
+  };
+
+  resetValidation() {
+    this._toggleButtonState(); // управление кнопкой сабмита
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
     });
   };
 
