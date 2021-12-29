@@ -1,6 +1,7 @@
 // импорт классов
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
 
 // попап редактирования профиля
 const popupEditProfile = document.querySelector('#popup-edit'); // попап ред-ия профиля
@@ -143,25 +144,35 @@ const handleCardClick = (title, image) => {  // объявляем функци�
   openPopup(popupPicture);
 };
 
-const createCard = cardData => { // создаём элемент карточки
-  const cardElement = new Card(cardData, '#cardTemplate', handleCardClick).createCard();
-  return cardElement;
-};
+// const createCard = cardData => { // создаём элемент карточки
+//   const cardElement = new Card(cardData, '#cardTemplate', handleCardClick).createCard();
+//   return cardElement;
+// };
 
-const addCard = cardData => { // добавляем элемент карточки
-  const cardElement = createCard(cardData);
-  cardContainer.prepend(cardElement);
-};
+// const addCard = cardData => { // добавляем элемент карточки
+//   const cardElement = createCard(cardData);
+//   cardContainer.prepend(cardElement);
+// };
 
-initialCards.reverse().forEach(cardDataArray => addCard(cardDataArray)); // рендер изначального массива.
-// чтобы не писать фунцию под рендер и под добавление новых карт из формы, решил перед проходом по изначальному
-// массиву перевернуть его, чтобы prepend одинаково хорошо работал и для новых карт и для массива initialCards
+// initialCards.reverse().forEach(cardDataArray => addCard(cardDataArray)); // рендер изначального массива.
+
 
 editButton.addEventListener('click', openPopupEditProfile); //обработчик клика по кнопке "редактировать профиль"
 formElementEditProfile.addEventListener('submit', handleProfileFormSubmit); // обработчик события по нажатию на "сохранить"
 addButton.addEventListener('click', openPopupAddCard); // обработчик клика по кнопке (+)
 formElementCreateCards.addEventListener('submit', handleAddCardFormSubmit); // обработчик клике по факту отправки формы
 
-// Геннадий, как и  прошлый раз ревью - огонь! спасибо большое!
-// Надеюсь всё правильно понял, но в случае чего - готов поправить
-// _toggleButtonState переписал по-другому и убрал лишние методы. Так код стал намного меньше. Этого не было в ревью, но решил попробовать сделать так
+// вставляем массив карточек в разметку
+const cardList = new Section({
+  items: initialCards.reverse(),
+  renderer: cardData => {
+    const card = new Card(cardData, "#cardTemplate", handleCardClick);
+    const cardElement = card.createCard();
+    cardList.addItem(cardElement);
+  }
+},
+".elements__list"
+)
+
+// рендерим все карточки разом
+cardList.renderItems();
