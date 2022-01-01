@@ -1,6 +1,4 @@
-export {Card};
-
-class Card {
+export default class Card {
   constructor(data, templateId, handleCardClick) { //данные карточки, id шаблона, инструкцию(слушатели на картинку)
     this._title = data.name;
     this._image = data.link;
