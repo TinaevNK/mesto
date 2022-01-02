@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "project №8",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TinaevNK/mesto.git"
+  },
+  "author": "Nikita Tinaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TinaevNK/mesto/issues"
+  },
+  "homepage": "https://github.com/TinaevNK/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "autoprefixer": "^10.4.1",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.5.1",
+    "cssnano": "^5.0.14",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "postcss-loader": "^6.2.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2"
+  },
+  "dependencies": {
+    "core-js": "^3.20.2"
+  }
+}

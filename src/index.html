@@ -2,25 +2,24 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Задание 4го спринта Яндекс.Практикум" />
+    <meta name="description" content="Задание 8го спринта Яндекс.Практикум" />
     <meta
       name="keywords" content="html, css, grid, flex, frontend, путешествия, адаптивная вёрстка, js, javascript" />
     <meta name="author" content="Никита Тинаев" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./images/favicon.svg" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="icon" href="<%=require('./images/favicon.svg')%>" />
     <title>Mesto</title>
   </head>
   <body class="body">
     <div class="page">
       <header class="header page__header">
         <a href="#" class="header__logo-link">
-          <img src="./images/logo.svg" alt="логотип" class="header__logo" />
+          <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo" />
         </a>
       </header>
       <main class="main page__main">
         <section aria-label="блок с профилем пользователя" class="profile main__profile">
-          <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar" />
+          <img src="<%=require('./images/avatar.jpg')%>" alt="аватар" class="profile__avatar" />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
@@ -110,6 +109,5 @@
       </template>
 
     </div>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

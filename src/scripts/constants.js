@@ -21,31 +21,39 @@ const popupElementCreateCards = document.querySelector('#popup-create-card'); //
 const addButton = document.querySelector('.profile__add-button'); // кнопка добавления карточки (+)
 const formElementCreateCards = popupElementCreateCards.querySelector('#popup-create-card__form'); // ищем форму добавления карточек
 
+const machuPiсchu = new URL('../images/machu-piсchu.jpg', import.meta.url);
+const moraineLake = new URL('../images/moraine-lake.jpg', import.meta.url);
+const pamukkale = new URL('../images/pamukkale.jpg', import.meta.url);
+const skaftafell = new URL('../images/skaftafell.jpg', import.meta.url);
+const svínafellsjökull = new URL('../images/svínafellsjökull.jpg', import.meta.url);
+const teriberka = new URL('../images/teriberka.jpg', import.meta.url);
+
+
 // массив данных с дефолтными карточками
 const initialCards = [ // первоначальный массив карточек для template (шаблона)
   {
     name: 'Мачу-Пикчу',
-    link: './images/machu-piсchu.jpg'
+    link: machuPiсchu
   },
   {
     name: 'Озеро Морейн',
-    link: './images/moraine-lake.jpg'
+    link: moraineLake
   },
   {
     name: 'Памуккале',
-    link: './images/pamukkale.jpg'
+    link: pamukkale
   },
   {
     name: 'Скафтафетль',
-    link: './images/skaftafell.jpg'
+    link: skaftafell
   },
   {
     name: 'Снайфедльсйёкюдль',
-    link: './images/svínafellsjökull.jpg'
+    link: svínafellsjökull
   },
   {
     name: 'Териберка',
-    link: './images/teriberka.jpg'
+    link: teriberka
   }
 ];
 
