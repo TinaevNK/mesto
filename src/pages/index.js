@@ -1,11 +1,11 @@
 // импорт
 import '../pages/index.css';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import UserInfo from './UserInfo.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import {
   editButton,
   formElementEditProfile,
@@ -16,7 +16,7 @@ import {
   initialCards,
   config,
   formValidators
-} from './constants.js';
+} from '../components/constants.js';
 
 const popupFullScr = new PopupWithImage('#popup-picture'); // создаём экземпляр класса попапа на полный экран
 popupFullScr.setEventListeners();
