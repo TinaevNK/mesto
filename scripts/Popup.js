@@ -6,7 +6,6 @@ export default class Popup {
   open() {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', evt => this._handleEscClose(evt));
-
   }
 
   close() {
@@ -21,12 +20,9 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popup.addEventListener('click', evt => {
-      if (evt.target.classList.contains('popup_opened')) { // если кликнутый элемент содержит написанный класс - закрой попап
+    this._popup.addEventListener('click', evt => { // если кликнутый элемент содержит написанный класс - закрой попап
+      if ((evt.target.classList.contains('popup_opened')) || (evt.target.classList.contains('popup__close-button_general'))) {
         this.close(); // закрытие по оверлею
-      };
-      if (evt.target.classList.contains('popup__close-button_general')) {
-        this.close(); // закрытие по кнопке "Х"
       };
     });
   }

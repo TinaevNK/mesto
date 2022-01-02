@@ -4,7 +4,7 @@ export default class Card {
     this._image = data.link;
     this._templateId = templateId;
     this._handleCardClick = handleCardClick;
-  };
+  }
 
   _getTemplate = () =>{ // рендерим карточки
     const cardElement = document
@@ -14,7 +14,7 @@ export default class Card {
       .cloneNode(true);
 
     return cardElement;
-  };
+  }
 
   createCard = () => { // создаём карточки, публичный метод. Им будем добавлять новые элементы
     this._element = this._getTemplate();
@@ -25,7 +25,7 @@ export default class Card {
     this._element.querySelector(".element__title").textContent = this._title;
 
     return this._element;
-  };
+  }
 
   _setEvantListeners = () =>{ // ставим слушатели на кнопку удаления и лайка
     this._element.querySelector(".element__delete-button").addEventListener("click", () => {
@@ -36,8 +36,9 @@ export default class Card {
       evt.target.classList.toggle("element__like-button_active");
     });
 
-    this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._title, this._image);
+    this._cardImage.addEventListener('click', () => { // передаём в колбэк данные карточки при клике на картинку
+      const data = {title: this._title, image: this._image};
+      this._handleCardClick(data);
     });
-  };
-};
+  }
+}

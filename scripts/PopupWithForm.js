@@ -1,4 +1,4 @@
-import Popup from "./Popup.js";
+import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, callbackSubmit) {
@@ -16,10 +16,8 @@ export default class PopupWithForm extends Popup {
     this._popup.addEventListener('submit', this._callbackSubmit);
   }
 
-  close () {
+  close() { // при закрытии отчистим поля формы
     super.close();
-    this._inputList.forEach(input => {
-      input.value = "";
-    });
+    this._inputList.forEach(input => input.value = "");
   }
 }
