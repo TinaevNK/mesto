@@ -14,14 +14,13 @@ import {
   addButton,
   formElementCreateCards,
   initialCards,
-  config,
-  formValidators
-} from '../components/constants.js';
+  config
+} from '../utils/constants.js';
 
-const popupFullScr = new PopupWithImage('#popup-picture'); // создаём экземпляр класса попапа на полный экран
-popupFullScr.setEventListeners();
+const popupFullScreen = new PopupWithImage('#popup-picture'); // создаём экземпляр класса попапа на полный экран
+popupFullScreen.setEventListeners();
 
-const handleCardClick = data => popupFullScr.open(data); // объявляем функцию, которая записываем значения в элементы попапа
+const handleCardClick = data => popupFullScreen.open(data); // объявляем функцию, которая записываем значения в элементы попапа
 
 // вставляем массив карточек в разметку
 const cardList = new Section({
@@ -37,33 +36,30 @@ const cardList = new Section({
 
 cardList.renderItems(); // рендерим все карточки
 
-const popupAddCard = new PopupWithForm(
-  '#popup-create-card',  // передаём селектор попапа
-  evt => { // колбэк по сабмиту
-    evt.preventDefault();
-    const data = { // получаем данные полей из массива
-      name: popupAddCard._getInputValues()[0].value,
-      link: popupAddCard._getInputValues()[1].value
-    };
-    const newCard = new Card(data, '#cardTemplate', handleCardClick); // из данных полей создаём новый экземпляр карточки
-    const newCardElement = newCard.createCard(); // отрисовываем карточку
-    cardList.addItem(newCardElement); // добавляем её в существующую разметку
-    popupAddCard.close(); //закрываем попап после сабмита
-  }
-);
+// Денис, спасибо за быстрое и качественное ревью! Вы заставили задуматься!
+// Надеюсь я правильно понял замечания, но в случае чего - готов сделать код ещё более чистым и правильным
+// С праздниками Вас!
+
+const popupAddCard = new PopupWithForm('#popup-create-card', data => {
+  const newCard = new Card(data, '#cardTemplate', handleCardClick); // из данных полей создаём новый экземпляр карточки
+  const newCardElement = newCard.createCard(); // отрисовываем карточку
+  cardList.addItem(newCardElement);
+  popupAddCard.close(); //закрываем попап после сабмита
+});
+
+popupAddCard.setEventListeners(); // ставим слушатели
 
 // экземпляр класса, работающего с профилем пользователя
 const userInfo = new UserInfo({nameSelector: '.profile__name', jobSelector:'.profile__job'});
 
-const popupEditProfile = new PopupWithForm('#popup-edit', evt => { // попап редактирования профиля
-  evt.preventDefault();
-  const data = {
-    name: popupEditProfile._getInputValues()[0].value,
-    job: popupEditProfile._getInputValues()[1].value
-  }
+const popupEditProfile = new PopupWithForm('#popup-edit', data => {
   userInfo.setUserInfo(data);
   popupEditProfile.close();
 });
+
+popupEditProfile.setEventListeners();
+
+const formValidators = {}; // объекты для валидации, первоначально - пустой массив. В него будем записывать нужные формы
 
 // Включение валидации
 const enableValidation = config => {
@@ -82,7 +78,6 @@ enableValidation(config);
 addButton.addEventListener('click', () => { // обработчик клика по кнопке (+)
   popupAddCard.open(); // открываем попап
   formValidators[formElementCreateCards.getAttribute('name')].resetValidation(); // убираем ошибки при открытии
-  popupAddCard.setEventListeners();// ставим слушатели
 });
 
 editButton.addEventListener("click", () => { //обработчик клика по кнопке "редактировать профиль"
@@ -90,6 +85,5 @@ editButton.addEventListener("click", () => { //обработчик клика �
   nameInput.value = profileInfo.name;
   jobInput.value = profileInfo.job;
   formValidators[formElementEditProfile.getAttribute('name')].resetValidation(); // убираем ошибки при открытии
-  popupEditProfile.setEventListeners();
   popupEditProfile.open();
 });

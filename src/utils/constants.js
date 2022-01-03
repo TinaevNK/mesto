@@ -1,15 +1,3 @@
-export {
-  editButton,
-  formElementEditProfile,
-  nameInput,
-  jobInput,
-  addButton,
-  formElementCreateCards,
-  initialCards,
-  config,
-  formValidators
-};
-
 // попап редактирования профиля
 const editButton = document.querySelector('#profile__edit-button'); // кнопка "ред-ть профиль"
 const formElementEditProfile = document.querySelector('#popup-edit__form'); // форма попапа ред-ия профиля
@@ -66,4 +54,13 @@ const config = { // конфиг для валидации
   errorClass: 'popup__error_opened'
 };
 
-const formValidators = {}; // объекты для валидации, первоначально - пустой массив. В него будем записывать нужные формы
+export {
+  editButton,
+  formElementEditProfile,
+  nameInput,
+  jobInput,
+  addButton,
+  formElementCreateCards,
+  initialCards,
+  config
+};
