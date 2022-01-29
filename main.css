@@ -11,7 +11,7 @@
 .main{color:#fff;font-family:Inter,Arial,Helvetica,sans-serif}
 .main__profile{margin-bottom:50px}@media screen and (max-width:960px){.main__profile{padding-left:33px;padding-right:33px}}@media screen and (max-width:500px){.main__profile{margin-bottom:36px;padding-left:19px;padding-right:19px}}
 .profile{align-items:center;color:#fff;display:flex;font-family:Inter,Arial,Helvetica,sans-serif}@media screen and (max-width:500px){.profile{flex-direction:column}}
-.profile__avatar{border-radius:50%;height:auto;margin-right:30px;max-width:120px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}@media screen and (max-width:500px){.profile__avatar{margin-bottom:26px;margin-right:0}}
+.profile__avatar{background-image:url(717ae23a264d020be959.jpg);background-position:50%;background-size:cover;border-radius:50%;height:120px;margin-right:30px;min-width:120px;position:relative}.profile__avatar:before{background-color:#000;background-image:url(6c7bf05444b9793fdf6e.svg);background-position:50%;background-repeat:no-repeat;background-size:26px;border-radius:40%;content:"";height:100%;left:0;opacity:0;position:absolute;top:0;width:100%}.profile__avatar:hover:before{cursor:pointer;opacity:.8;transition:opacity .3s ease}@media screen and (max-width:500px){.profile__avatar{margin-bottom:26px;margin-right:0}}
 .profile__info{align-items:baseline;-moz-column-gap:18px;column-gap:18px;display:grid;grid-template-areas:"name edit-button" "job job";grid-template-columns:1fr 24px;margin-right:15px;row-gap:8px}@media screen and (max-width:500px){.profile__info{-moz-column-gap:10px;column-gap:10px;grid-template-columns:1fr 18px;margin-bottom:36px;margin-right:0;row-gap:5px;text-align:center}}
 .profile__name{font-size:42px;font-style:normal;font-weight:500;grid-area:name;line-height:1.1429;margin:0;max-width:500px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:960px){.profile__name{font-size:32px;max-width:340px}}@media screen and (max-width:500px){.profile__name{font-size:27px;line-height:1.222;margin-left:20px}}
 .profile__job{font-size:18px;font-style:normal;font-weight:400;grid-area:job;line-height:1.222;margin:0;max-width:500px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:960px){.profile__job{font-size:16px;max-width:340px}}@media screen and (max-width:500px){.profile__job{font-size:14px}}
@@ -24,7 +24,9 @@
 .element__photo{cursor:pointer;height:282px;-o-object-fit:cover;object-fit:cover;width:100%}
 .element__container{align-items:center;background-color:#fff;display:flex;justify-content:space-between;padding:25px 21px 26px}
 .element__title{font-size:24px;font-style:normal;font-weight:900;line-height:1.208;margin:0;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.element__like-button{background-color:transparent;background-image:url(1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;border:none;height:19px;opacity:1;padding:0;transition:opacity .3s ease;width:22px}.element__like-button:hover{cursor:pointer;opacity:.5}
+.element__like-container{align-items:center;display:flex;flex-direction:column}
+.element__like-button{background-color:transparent;background-image:url(1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;border:none;height:19px;margin-bottom:3px;opacity:1;padding:0;transition:opacity .3s ease;width:22px}.element__like-button:hover{cursor:pointer;opacity:.5}
+.element__like-counter{font-size:13px;font-style:normal;font-weight:400;line-height:1.2308}
 .element__like-button_active{background-image:url(35948469632d0421d697.svg)}
 .footer{color:#545454;font-family:Inter,Arial,Helvetica,sans-serif}
 .footer__copyright{font-size:18px;font-style:normal;font-weight:400;line-height:1.222;margin:0}@media screen and (max-width:500px){.footer__copyright{font-size:14px;line-height:1.2143}}
@@ -48,3 +50,5 @@
 .popup__error{color:red;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin-top:2px;opacity:0;position:absolute;top:100%;transition:visibility .3s,opacity .3s linear;visibility:hidden;z-index:200}
 .popup__error_opened{opacity:1;visibility:visible}
 
+
+/*# sourceMappingURL=main.css.map*/
