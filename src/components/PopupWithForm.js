@@ -7,6 +7,7 @@ export default class PopupWithForm extends Popup {
     this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
     this._formValues = {};
     this._sumbitButton = this._popup.querySelector('.popup__save-button');
+    this._popupForm = this._popup.querySelector('.popup__form');
   }
 
   _getInputValues() {
@@ -24,6 +25,6 @@ export default class PopupWithForm extends Popup {
 
   close() { // при закрытии отчистим поля формы
     super.close();
-    this._popup.querySelector('.popup__form').reset();
+    this._popupForm.reset();
   }
 }

@@ -50,13 +50,13 @@ export default class Card {
 
     this._likeButton.addEventListener('click', evt => { // слушатель на постановку и снятие лайка
       if (evt.target.classList.contains('element__like-button_active')) {
-        this._handleLikeDelete(this._cardData);
-        evt.target.classList.remove('element__like-button_active');
+        this._handleLikeDelete(this._cardData, evt);
       } else {
-        this._handleLikeSet(this._cardData);
-        evt.target.classList.add('element__like-button_active');
+        this._handleLikeSet(this._cardData, evt);
       }
     })
+
+    // Михаил, спасибо за быстрое ревью! Надеюсь правильно понял замечания! в случае чего - готов поправить
 
     this._cardImage.addEventListener('click', () => { // передаём в колбэк данные карточки при клике на картинку
       const data = {title: this._title, image: this._image};
@@ -67,7 +67,6 @@ export default class Card {
   _isLiked() { // проверяем наш ли лайк при рендере
     this._likes.forEach(like => {
       if (like._id === this._UserId) {
-        debugger
         this._likeButton.classList.add('element__like-button_active')
       }
     })

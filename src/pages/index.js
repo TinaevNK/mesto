@@ -104,18 +104,20 @@ const createNewCard = (data, userId) => { // функция создания н�
 
 const handleCardDelete = element => popupDeleteCard.open(element);
 
-const handleLikeSet = cardData => { // колбэк для отпраки лайка на сервер
+const handleLikeSet = (cardData, evt) => { // колбэк для отправки лайка на сервер
   api.setLike(cardData.data)
     .then(res => {
-      cardData.counterLikes.textContent = res.likes.length
+      cardData.counterLikes.textContent = res.likes.length;
+      evt.target.classList.add('element__like-button_active');
     })
     .catch(err => console.log(err))
 };
 
-const handleLikeDelete = cardData => { // колбэк для удаления лайка с сервера
+const handleLikeDelete = (cardData, evt) => { // колбэк для удаления лайка с сервера
   api.deleteLike(cardData.data)
     .then(res => {
-      cardData.counterLikes.textContent = res.likes.length
+      cardData.counterLikes.textContent = res.likes.length;
+      evt.target.classList.remove('element__like-button_active');
     })
     .catch(err => console.log(err))
 };
