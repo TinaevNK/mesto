@@ -6,6 +6,7 @@
   width: 22px;
   height: 19px;
   padding: 0;
+  margin-bottom: 3px;
   border: none;
   transition: opacity .3s ease;
   opacity: 1;

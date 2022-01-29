@@ -56,8 +56,12 @@
 @import url(../blocks/element/__container/element__container.css);
 /* заголовок карточек */
 @import url(../blocks/element/__title/element__title.css);
+/* контейнер лайка */
+@import url(../blocks/element/__like-container/element__like-container.css);
 /* кнопка лайка */
 @import url(../blocks/element/__like-button/element__like-button.css);
+/* счётчик лайков */
+@import url(../blocks/element/__like-counter/element__like-counter.css);
 /* модификатор для закрашивания лайка */
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 

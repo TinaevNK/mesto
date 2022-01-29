@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "webpack serve"
   },
   "repository": {
@@ -25,6 +27,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.5.1",
     "cssnano": "^5.0.14",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss-loader": "^6.2.1",

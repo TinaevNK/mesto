@@ -1,17 +1,21 @@
 export default class Section {
-  constructor({ items, renderer }, containerSelector) {
-    this._renderedItems = items;
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
 
-  renderItems() {
-    this._renderedItems.forEach(item => {
-      this._renderer(item);
+  renderCards = cardsObject => {
+    cardsObject.cards.forEach(item => {
+      const objItem = {card: item, userId: cardsObject.userId, insertMethod: cardsObject.insertMethod };
+      this._renderer(objItem);
     });
   }
 
-  addItem(element) {
-    this._container.prepend(element);
+  addItem = (element, insertMethod) => { // это для того, чтобы рендер отобразился как следует, а добавление новой карточки было в начало списка
+    if (insertMethod == 'append') {
+      this._container.append(element);
+    } else {
+      this._container.prepend(element);
+    }
   }
 }

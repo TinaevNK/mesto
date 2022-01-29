@@ -19,10 +19,10 @@
       </header>
       <main class="main page__main">
         <section aria-label="блок с профилем пользователя" class="profile main__profile">
-          <img src="<%=require('./images/avatar.jpg')%>" alt="аватар" class="profile__avatar" />
+          <div class="profile__avatar"></div>
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__job">Исследователь океана</p>
+            <h1 class="profile__name">Имя пользовaтеля</h1>
+            <p class="profile__job">О пользователе</p>
             <button id='profile__edit-button' type="button" class="profile__edit-button"></button>
           </div>
           <button id='profile__add-button' type="button" class="profile__add-button"></button>
@@ -49,8 +49,8 @@
                 <span class="popup__error" id="name-error"></span>
               </label>
               <label class="popup__label">
-                <input type="text" placeholder="О себе" name="job" value="" id="job" minlength="2" maxlength="200" required class="popup__input" />
-                <span class="popup__error" id="job-error"></span>
+                <input type="text" placeholder="О себе" name="about" value="" id="about" minlength="2" maxlength="200" required class="popup__input" />
+                <span class="popup__error" id="about-error"></span>
               </label>
               <button id='popup-edit__save-button' type="submit" class="popup__save-button">
                 Сохранить
@@ -95,6 +95,40 @@
         </figure>
       </div>
 
+      <!-- попап удаления карточки -->
+
+      <div id='popup-delete-card' class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <form id='popup-delete-card__form' name="delete-card" novalidate class="popup__form">
+            <button id='popup-delete-card__save-button' type="submit" class="popup__save-button">
+              Да
+            </button>
+            <button type="button" class="popup__close-button popup__close-button_general"></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- попап обновления аватарки -->
+
+      <div id='popup-avatar' class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form id='popup-avatar__form' name="avatar" novalidate class="popup__form">
+            <fieldset class="popup__info">
+              <label class="popup__label">
+                <input type="url" placeholder="Ссылка на изображение" name="avatar" value="" id="avatar__link" required class="popup__input" />
+                <span class="popup__error" id="avatar__link-error"></span>
+              </label>
+              <button id='popup-avatar__save-button' type="submit" class="popup__save-button">
+                Сохранить
+              </button>
+            </fieldset>
+            <button type="button" class="popup__close-button popup__close-button_general"></button>
+          </form>
+        </div>
+      </div>
+
       <!-- шаблон для карточек -->
 
       <template id="cardTemplate">
@@ -103,7 +137,10 @@
           <img src="#" alt="шаблон фото-карточки" class="element__photo" />
           <div class="element__container">
             <h2 class="element__title">Test</h2>
-            <button type="button" class="element__like-button"></button>
+            <div class="element__like-container">
+              <button type="button" class="element__like-button"></button>
+              <span class="element__like-counter">1</span>
+            </div>
           </div>
         </li>
       </template>
