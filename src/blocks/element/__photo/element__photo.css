@@ -2,5 +2,13 @@
   width: 100%;
   height: 282px;
   object-fit: cover;
+  transition: .2s;
+  z-index: 1;
+  position: relative;;
+}
+
+.element__photo:hover {
+  transform: scale(1.2);
   cursor: pointer;
+  filter: brightness(120%);
 }

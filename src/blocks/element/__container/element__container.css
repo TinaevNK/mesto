@@ -1,7 +1,8 @@
 .element__container {
- background-color: white;
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 25px 21px 26px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 21px 26px;
+  z-index: 2;
 }
