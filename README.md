@@ -4,7 +4,7 @@
 ---
 ## *Описание*
 ----
-<p align="center"><a href="https://tinaevnk.github.io/mesto/index.html" target="_blank"><img src="https://i2.paste.pics/31007b090c110d80fe8a16ea8493a91f.png?trs=f95e73b2f9dad8580b322eff37a94598b8622de396abb43d7a60feb13b1c5177" width="700px"></a></p>
+<p align="center"><a href="https://tinaevnk.github.io/mesto/index.html" target="_blank"><img src="https://sun9-54.userapi.com/impg/X8UV3ptB-qv_bUpagnVYWEjEu_mxyjUSGV_ycQ/-R0dNIOucD4.jpg?size=975x945&quality=96&sign=ab840a050a5d974f88d3ac3f966dfa1a&type=album" alt="скриншот проекта" width="700px"></a></p>
 
 ### ***О чём проект?***
 
